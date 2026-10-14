@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<title>IVE CRM — Inteligência em Vendas</title>
+<meta name="description" content="CRM com Inteligência Artificial e automação implantado no processo real da sua empresa.">
+<link rel="icon" type="image/png" href="../fav-icon/fav-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+<style>
+:root{
+  --ink:#111D15;--ink-soft:#1A2A1E;--paper:#FAF8F5;--paper-2:#F3F0EA;
+  --slate:#5A6070;--slate-light:#8A909E;
+  --amber:#E7A33E;--amber-deep:#C77F1E;--amber-glow:rgba(231,163,62,.15);
+  --teal:#2FBBAE;--teal-deep:#1FA397;--teal-glow:rgba(47,187,174,.12);
+  --indigo:#111D15;--line:rgba(17,29,21,.08);--line-dark:rgba(250,248,245,.08);
+  --red:#E5484D;--green:#30A46C;
+  --font-display:'SF Pro Display',-apple-system,'Segoe UI',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+  --container:1200px;--radius:16px;--radius-sm:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);color:var(--indigo);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px;}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;color:var(--indigo);line-height:1.15;}
+h1{font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:-.02em;}
+h2{font-size:clamp(1.8rem,3.6vw,2.8rem);}
+p{color:var(--slate);line-height:1.7;}
+section{padding:100px 0;}
+@media(max-width:720px){section{padding:72px 0;}}
+
+.skip-link{position:absolute;top:-100%;left:16px;z-index:200;background:var(--teal);color:#fff;padding:12px 24px;border-radius:var(--radius-sm);font-weight:600;}
+.skip-link:focus{top:16px;}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;font-family:var(--font-body);font-weight:600;font-size:.95rem;padding:15px 28px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);white-space:nowrap;text-decoration:none;position:relative;overflow:hidden;}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(0);}
+.btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+.btn-primary{background:var(--amber);color:#1A0F02;box-shadow:0 8px 24px -8px rgba(231,163,62,.6),inset 0 1px 0 rgba(255,255,255,.2);}
+.btn-primary:hover{background:var(--amber-deep);box-shadow:0 12px 32px -6px rgba(199,127,30,.5);}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.2);color:var(--paper);}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);}
+.btn-ghost.on-dark{border-color:var(--line);color:var(--indigo);}
+.btn-ghost.on-dark:hover{border-color:var(--indigo);background:rgba(17,29,21,.03);}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 8px 24px -8px rgba(47,187,174,.5);}
+.btn-teal:hover{background:var(--teal-deep);box-shadow:0 12px 32px -6px rgba(31,163,151,.4);}
+.btn-sm{padding:10px 20px;font-size:.85rem;}
+.btn-block{width:100%;}
+.btn .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:none;}
+.btn.loading .spinner{display:block;}
+.btn.loading .btn-text{opacity:.6;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.btn-pulse{animation:btnPulse 2s ease-in-out infinite;}
+@keyframes btnPulse{0%,100%{box-shadow:0 8px 24px -8px rgba(231,163,62,.6);}50%{box-shadow:0 8px 32px -4px rgba(231,163,62,.8),0 0 0 6px rgba(231,163,62,.12);}}
+.section-cta{margin-top:40px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.section-cta p{font-size:.9rem;color:var(--slate-light);}
+
+/* ============ HEADER ============ */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:#111D15;backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid var(--line-dark);transition:all .3s ease;}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.4rem;color:var(--paper);display:flex;align-items:center;}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--amber));display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--ink);margin-right:10px;transition:transform .3s ease;}
+.logo:hover .logo-mark{transform:rotate(-8deg) scale(1.1);}
+.nav-links{display:flex;gap:36px;font-size:.88rem;color:#A0A8BC;}
+.nav-links a{position:relative;padding:4px 0;}
+.nav-links a::after{content:"";position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:2px;transition:width .3s ease;}
+.nav-links a:hover{color:var(--paper);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{display:flex;align-items:center;gap:12px;}
+.nav-toggle{display:none;background:none;border:none;color:var(--paper);font-size:1.4rem;cursor:pointer;padding:8px;border-radius:8px;}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(17,29,21,.98);backdrop-filter:blur(20px);padding:24px 28px;z-index:99;flex-direction:column;gap:8px;opacity:0;transform:translateY(-10px);transition:all .3s ease;}
+.mobile-menu.open{display:flex;opacity:1;transform:none;}
+.mobile-menu a{display:block;padding:16px 0;font-size:1.1rem;color:var(--paper);border-bottom:1px solid var(--line-dark);}
+.mobile-menu a.btn{display:none;}
+@media(max-width:960px){.nav-links,.nav-cta{display:none;}.nav-toggle{display:block;}}
+
+/* ============ FLOATING ORBS ============ */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);opacity:.5;animation:orbFloat 8s ease-in-out infinite;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}25%{transform:translate(30px,-20px) scale(1.05);}50%{transform:translate(-10px,30px) scale(.95);}75%{transform:translate(-30px,-10px) scale(1.02);}}
+.orb-teal{background:var(--teal);}
+.orb-amber{background:var(--amber);}
+
+/* ============ HERO ============ */
+.hero{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;padding:140px 0 0 0;}
+.hero-bg{position:absolute;inset:0;overflow:hidden;}
+.hero-bg .orb:nth-child(1){width:600px;height:600px;top:-10%;right:-5%;animation-delay:0s;}
+.hero-bg .orb:nth-child(2){width:400px;height:400px;bottom:0;left:-5%;animation-delay:2s;}
+.hero-bg .orb:nth-child(3){width:300px;height:300px;top:40%;left:50%;animation-delay:4s;opacity:.3;}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;position:relative;z-index:1;}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:48px;}}
+.hero-copy h1{color:var(--paper);}
+.hero-copy h1 em{font-style:normal;position:relative;display:inline;}
+.hero-sub{margin-top:24px;font-size:1.15rem;color:#CBD1DF;max-width:540px;line-height:1.7;}
+.hero-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:28px;}
+.hero-list li{display:flex;align-items:flex-start;gap:12px;}
+.hero-list .list-dot{flex:none;width:10px;height:10px;border-radius:50%;margin-top:8px;background:linear-gradient(135deg,var(--teal),var(--amber));box-shadow:0 0 10px rgba(47,187,174,.5);}
+.hero-list strong{color:var(--paper);font-weight:600;}
+.hero-list em{font-style:normal;color:var(--amber);font-weight:700;}
+.hero-ctas{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+.hero-meta{display:flex;gap:32px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line-dark);flex-wrap:wrap;}
+.hero-meta div{font-family:var(--font-mono);font-size:.78rem;color:#8A92A8;}
+.hero-meta strong{display:block;font-family:var(--font-display);font-size:1.2rem;color:var(--paper);font-weight:600;margin-bottom:3px;}
+
+/* Typing Effect */
+.typing-wrap{display:inline;}
+.typing-cursor{display:inline-block;width:3px;height:1em;background:var(--teal);margin-left:2px;animation:blink .8s step-end infinite;vertical-align:text-bottom;}
+@keyframes blink{50%{opacity:0;}}
+
+/* Hero Visual */
+.hero-visual{position:relative;}
+.product-frame{background:var(--ink-soft);border-radius:var(--radius);border:1px solid var(--line-dark);box-shadow:0 40px 80px -20px rgba(0,0,0,.6),0 0 120px rgba(47,187,174,.06);overflow:hidden;position:relative;}
+.product-frame::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(47,187,174,.25),transparent 50%,rgba(231,163,62,.15));z-index:-1;opacity:.6;}
+.frame-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;background:rgba(17,29,21,.8);border-bottom:1px solid var(--line-dark);}
+.frame-dot{width:10px;height:10px;border-radius:50%;}
+.frame-dot:nth-child(1){background:#FF5F57;}
+.frame-dot:nth-child(2){background:#FEBC2E;}
+.frame-dot:nth-child(3){background:#28C840;}
+.frame-bar small{margin-left:12px;font-family:var(--font-mono);font-size:.7rem;color:#5C6478;}
+.frame-body{padding:0;line-height:0;background:#fff;}
+.frame-body img{width:100%;height:auto;object-fit:contain;}
+/* Carousel */
+.carousel{position:relative;overflow:hidden;background:#fff;}
+.carousel-track{display:grid;}
+.carousel-slide{grid-area:1/1;width:100%;height:auto;opacity:0;transition:opacity 1s ease;pointer-events:none;}
+.carousel-slide.active{opacity:1;pointer-events:auto;}
+.carousel-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2;padding:4px 0;pointer-events:none;}
+.carousel-dots span{width:8px;height:8px;border-radius:50%;background:rgba(17,29,21,.3);transition:all .3s ease;cursor:pointer;pointer-events:auto;}
+.carousel-dots span.active{background:var(--amber);transform:scale(1.2);}
+.hero-badge{position:absolute;bottom:-20px;left:-20px;background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 16px 40px -12px rgba(47,187,174,.5);font-family:var(--font-mono);font-size:.78rem;font-weight:600;max-width:220px;line-height:1.4;animation:badgeGlow 3s ease-in-out infinite;}
+@keyframes badgeGlow{0%,100%{box-shadow:0 16px 40px -12px rgba(47,187,174,.5);}50%{box-shadow:0 16px 50px -8px rgba(47,187,174,.7),0 0 0 6px rgba(47,187,174,.1);}}
+@media(max-width:960px){.hero-badge{position:static;margin-top:20px;display:inline-block;}}
+
+/* Trust Strip */
+.trust-strip{margin-top:64px;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);background:linear-gradient(135deg,rgba(47,187,174,.06),rgba(231,163,62,.05) 60%,transparent);padding:40px 0;}
+.trust-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.trust-message{min-width:0;}
+.trust-txt{font-family:var(--font-body);font-size:1rem;font-weight:500;color:var(--paper);line-height:1.4;white-space:nowrap;}
+@media(max-width:720px){.trust-txt{white-space:normal;}}
+.trust-logos{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.soc-logo{width:26px;height:26px;fill:currentColor;color:var(--paper);padding:0;transition:all .3s ease;cursor:pointer;}
+.soc-badge{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line-dark);transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer;}
+.soc-badge:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);transform:translateY(-3px) scale(1.06);box-shadow:0 12px 28px -12px rgba(0,0,0,.5);}
+.soc-badge:hover .soc-logo{color:#fff;}
+.soc-badge[data-color="#25D366"]:hover{border-color:rgba(37,211,102,.55);}
+.soc-badge[data-color="#25D366"]:hover .soc-logo{color:#25D366;}
+.soc-badge[data-color="#229ED9"]:hover{border-color:rgba(34,158,217,.55);}
+.soc-badge[data-color="#229ED9"]:hover .soc-logo{color:#229ED9;}
+.soc-badge[data-color="#E4405F"]:hover{border-color:rgba(228,64,95,.55);}
+.soc-badge[data-color="#E4405F"]:hover .soc-logo{color:#E4405F;}
+.soc-badge[data-color="#0084FF"]:hover{border-color:rgba(0,132,255,.55);}
+.soc-badge[data-color="#0084FF"]:hover .soc-logo{color:#0084FF;}
+
+/* ============ SECTION DIVIDERS ============ */
+.divider{height:4px;border:none;margin:0;}
+.divider-gradient{background:linear-gradient(90deg,var(--teal),var(--amber),var(--teal));background-size:200% 100%;animation:dividerShift 4s linear infinite;}
+@keyframes dividerShift{0%{background-position:0% 0;}100%{background-position:200% 0;}}
+
+/* ============ DOR ============ */
+.pain{background:var(--paper);position:relative;}
+.pain::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--amber),var(--teal),var(--amber));background-size:200% 100%;animation:dividerShift 4s linear infinite;}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media(max-width:760px){.pain-grid{grid-template-columns:1fr;}}
+.pain-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;gap:18px;align-items:flex-start;position:relative;overflow:hidden;}
+.pain-card.in{}
+.pain-card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--teal),var(--amber));opacity:0;transition:opacity .3s ease;}
+.pain-card:hover{border-color:rgba(47,187,174,.2);box-shadow:0 8px 30px -10px rgba(47,187,174,.15);transform:translateY(-3px) !important;}
+.pain-card:hover::before{opacity:1;}
+.pain-card .ico{flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#FEF3E2,#FBEEDA);color:var(--amber-deep);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:.82rem;transition:all .3s ease;}
+.pain-card:hover .ico{background:linear-gradient(135deg,var(--teal-glow),rgba(47,187,174,.08));color:var(--teal);transform:scale(1.08);}
+.pain-card p{color:var(--slate);font-size:.94rem;line-height:1.6;}
+.pain-card p strong{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(1rem,1.4vw,1.14rem);line-height:1.3;color:var(--ink);letter-spacing:-.01em;margin-bottom:1px;}
+.pain-flip{margin-top:44px;background:linear-gradient(135deg,var(--indigo),#1A2A1E);color:var(--paper);border-radius:var(--radius);padding:36px 40px;font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.4;position:relative;overflow:hidden;}
+.pain-flip::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(47,187,174,.15),transparent 50%),radial-gradient(circle at 20% 80%,rgba(231,163,62,.1),transparent 50%);pointer-events:none;}
+.pain-flip span{color:var(--teal);position:relative;z-index:1;}
+.pain-flip.flip-light{background:var(--paper);color:var(--indigo);border:1px solid var(--line);box-shadow:0 20px 50px -30px rgba(17,29,21,.35);}
+.pain-flip.flip-light::before{background:radial-gradient(circle at 85% 15%,rgba(47,187,174,.12),transparent 45%),radial-gradient(circle at 15% 85%,rgba(231,163,62,.12),transparent 45%);}
+.pain-flip.flip-light span{color:var(--amber-deep);}
+
+/* ============ PILARES ============ */
+.pillars{background:var(--paper-2);position:relative;overflow:hidden;}
+.pillars::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(47,187,174,.04),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(231,163,62,.03),transparent 60%);pointer-events:none;}
+.section-head{max-width:660px;margin-bottom:48px;}
+.section-head p{margin-top:16px;font-size:1.05rem;}
+.eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-deep);display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:600;}
+.eyebrow::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--amber),var(--teal));border-radius:2px;}
+.pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media(max-width:980px){.pillar-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.pillar-grid{grid-template-columns:1fr;}}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:all .4s cubic-bezier(.4,0,.2,1);opacity:0;transform:translateY(30px);}
+.pillar.in{opacity:1;transform:none;}
+.pillar:hover{transform:translateY(-6px) !important;box-shadow:0 20px 50px -15px rgba(47,187,174,.15);border-color:rgba(47,187,174,.25);}
+.pillar-shot{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:all .4s ease;}
+.pillar:hover .pillar-shot{transform:scale(1.02);}
+.pillar:nth-child(1) .pillar-shot{background:linear-gradient(135deg,#E8F8F5,#D5F0EB);}
+.pillar:nth-child(2) .pillar-shot{background:linear-gradient(135deg,#EEF2FA,#E3E9F8);}
+.pillar:nth-child(3) .pillar-shot{background:linear-gradient(135deg,#FFF8ED,#FEF0DA);}
+.pillar:nth-child(4) .pillar-shot{background:linear-gradient(135deg,#F0F9FF,#E0F2FE);}
+.pillar-shot .tag{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-light);background:rgba(255,255,255,.7);padding:8px 14px;border-radius:999px;backdrop-filter:blur(8px);position:absolute;top:14px;left:14px;z-index:2;font-weight:600;color:var(--ink-soft);}
+
+/* ============ PILLAR IMAGE + ZOOM ============ */
+.pillar-shot{display:block;cursor:zoom-in;}
+.pillar-shot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:0;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.pillar:hover .pillar-shot img{transform:scale(1.05);}
+.pillar-shot .zoom-hint{position:absolute;right:14px;bottom:14px;z-index:2;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(17,29,21,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);opacity:0;transform:translateY(6px);transition:all .3s cubic-bezier(.4,0,.2,1);}
+.pillar:hover .zoom-hint{opacity:1;transform:none;color:var(--amber);border-color:rgba(231,163,62,.5);}
+.pillar-shot::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(17,29,21,.18),transparent 40%);pointer-events:none;}
+
+/* ============ LIGHTBOX ============ */
+.lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(17,29,21,.94);backdrop-filter:blur(6px);padding:40px;}
+.lightbox.open{display:flex;animation:lbFade .25s ease;}
+@keyframes lbFade{from{opacity:0;}to{opacity:1;}}
+.lightbox-figure{margin:0;max-width:96vw;max-height:86vh;text-align:center;animation:lbZoom .3s cubic-bezier(.4,0,.2,1);}
+@keyframes lbZoom{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:none;}}
+.lightbox-figure img{max-width:90vw;max-height:74vh;width:auto;height:auto;object-fit:contain;border-radius:var(--radius-sm);box-shadow:0 40px 90px -30px rgba(0,0,0,.6);}
+.lightbox-figcaption{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-light);margin-top:16px;font-weight:600;}
+.lightbox .lb-close{position:absolute;top:22px;right:26px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-size:1.4rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s ease;}
+.lightbox .lb-close:hover{background:var(--amber);border-color:var(--amber);color:var(--ink-soft);}
+.lightbox .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s ease;}
+.lightbox .lb-nav:hover{background:var(--teal);border-color:var(--teal);color:var(--ink-soft);}
+.lightbox .lb-prev{left:24px;}
+.lightbox .lb-next{right:24px;}
+@media(max-width:720px){.lightbox .lb-nav{width:42px;height:42px;} .lightbox .lb-prev{left:10px;} .lightbox .lb-next{right:10px;}}
+.pillar-body{padding:24px 24px 28px;}
+.pillar-body .num{font-family:var(--font-mono);font-size:.7rem;color:var(--teal);font-weight:700;margin-bottom:10px;display:block;letter-spacing:.08em;}
+.pillar-body h3{margin-bottom:10px;font-size:1.15rem;transition:color .3s ease;}
+.pillar:hover h3{color:var(--teal-deep);}
+.pillar-body p{font-size:.92rem;line-height:1.65;}
+
+/* ============ DIFERENCIAL ============ */
+.diff{background:linear-gradient(135deg,var(--ink),#1A2A1E);color:var(--paper);position:relative;overflow:hidden;}
+.diff::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 400px at 20% 20%,rgba(47,187,174,.08),transparent 60%),radial-gradient(400px 300px at 80% 80%,rgba(231,163,62,.05),transparent 60%);pointer-events:none;}
+.diff .section-head h2{color:var(--paper);}
+.process{margin-top:60px;position:relative;z-index:1;}
+.step{display:grid;grid-template-columns:52px 1fr;gap:24px;padding:22px 0;position:relative;}
+.step-num{width:52px;height:52px;border-radius:50%;background:var(--ink-soft);border:2px solid rgba(47,187,174,.3);color:var(--teal);font-family:var(--font-mono);font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:center;z-index:1;transition:all .4s cubic-bezier(.4,0,.2,1);}
+.step:hover .step-num{background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#fff;border-color:var(--teal);box-shadow:0 0 30px rgba(47,187,174,.4);transform:scale(1.1);}
+.step-body{border-bottom:1px solid var(--line-dark);padding-bottom:22px;}
+.step:last-child .step-body{border-bottom:none;}
+.step-body h4{color:var(--paper);font-size:1.08rem;margin-bottom:6px;font-weight:600;font-family:var(--font-body);transition:color .3s ease;}
+.step:hover h4{color:var(--teal);}
+.step-body p{color:#AEB4C4;font-size:.94rem;}
+
+/* ============ INTEGRAÇÕES ============ */
+.integrations{background:var(--paper);position:relative;}
+.int-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+@media(max-width:900px){.int-layout{grid-template-columns:1fr;}}
+.int-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{font-family:var(--font-mono);font-size:.78rem;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--indigo);transition:all .3s ease;cursor:default;}
+.chip:hover{border-color:var(--teal);background:var(--teal-glow);transform:translateY(-2px) scale(1.04);box-shadow:0 4px 16px -4px rgba(47,187,174,.2);}
+.int-visual{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative;box-shadow:var(--shadow-md);}
+.int-visual img{width:100%;height:auto;object-fit:contain;border-radius:10px;}
+.int-note{margin-top:28px;font-size:.9rem;color:var(--slate);background:linear-gradient(135deg,#FEF8ED,#FDF5E1);border:1px solid #F0D9AE;padding:16px 20px;border-radius:var(--radius-sm);line-height:1.6;}
+.int-note strong{color:var(--amber-deep);}
+
+/* ============ PLANOS ============ */
+.plans{background:linear-gradient(180deg,var(--paper-2),var(--paper));position:relative;overflow:hidden;}
+.plans::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(231,163,62,.06),transparent 70%);pointer-events:none;animation:orbFloat 12s ease-in-out infinite;}
+.plans::after{content:"";position:absolute;bottom:-200px;left:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(47,187,174,.05),transparent 70%);pointer-events:none;animation:orbFloat 10s ease-in-out infinite reverse;}
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;perspective:1000px;grid-auto-rows:1fr;}
+@media(max-width:1040px){.plan-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.plan-grid{grid-template-columns:1fr;}}
+.plan{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:28px 26px;display:flex;flex-direction:column;gap:18px;position:relative;transition:all .5s cubic-bezier(.4,0,.2,1);opacity:0;transform:translateY(40px) rotateX(4deg);height:100%;}
+.plan.in{opacity:1;transform:none;}
+.plan:hover{transform:translateY(-10px) scale(1.02) !important;box-shadow:0 30px 60px -20px rgba(0,0,0,.12);border-color:rgba(47,187,174,.2);}
+.plan:not(.featured):hover{border-color:var(--amber);border-width:2px;box-shadow:0 24px 60px -18px rgba(231,163,62,.3);transform:translateY(-10px) scale(1.04) !important;z-index:2;}
+.plan.featured{border-color:var(--amber);border-width:2px;box-shadow:0 24px 60px -18px rgba(231,163,62,.3);transform:translateY(0) scale(1.04);z-index:2;}
+.plan.featured.in{transform:translateY(0) scale(1.04);}
+.plan.featured:hover{}
+.plan-flag{position:absolute;top:-13px;left:24px;background:linear-gradient(135deg,var(--amber),var(--amber-deep));color:#1A0F02;font-family:var(--font-mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:999px;box-shadow:0 4px 16px -4px rgba(231,163,62,.5);animation:flagGlow 2.5s ease-in-out infinite;z-index:3;}
+@keyframes flagGlow{0%,100%{box-shadow:0 4px 16px -4px rgba(231,163,62,.5);}50%{box-shadow:0 4px 24px -2px rgba(231,163,62,.7),0 0 0 4px rgba(231,163,62,.1);}}
+.plan-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:all .4s cubic-bezier(.4,0,.2,1);}
+.plan:hover .plan-icon{transform:scale(1.15) rotate(-5deg);}
+.plan:nth-child(1) .plan-icon{background:linear-gradient(135deg,#E8F8F5,#D5F0EB);}
+.plan:nth-child(2) .plan-icon{background:linear-gradient(135deg,#FEF3E2,#FBEEDA);}
+.plan:nth-child(3) .plan-icon{background:linear-gradient(135deg,#EEF2FA,#E3E9F8);}
+.plan:nth-child(4) .plan-icon{background:linear-gradient(135deg,#F0F9FF,#E0F2FE);}
+.plan h3{font-size:1.18rem;transition:color .3s ease;}
+.plan:hover h3{color:var(--teal-deep);}
+.plan.featured:hover h3{color:var(--amber-deep);}
+.plan .desc{font-size:.86rem;color:var(--slate);min-height:54px;line-height:1.6;}
+.plan ul{display:flex;flex-direction:column;gap:10px;font-size:.86rem;color:var(--indigo);flex:1;}
+.plan ul li{display:flex;gap:10px;align-items:flex-start;line-height:1.5;opacity:0;transform:translateX(-12px);transition:all .3s ease;}
+.plan.in ul li{opacity:1;transform:none;}
+.plan.in ul li:nth-child(1){transition-delay:.1s;}.plan.in ul li:nth-child(2){transition-delay:.15s;}.plan.in ul li:nth-child(3){transition-delay:.2s;}.plan.in ul li:nth-child(4){transition-delay:.25s;}.plan.in ul li:nth-child(5){transition-delay:.3s;}
+.plan ul li .check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--teal-glow);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;transition:all .3s ease;}
+.plan:hover ul li .check{background:var(--teal);color:#fff;box-shadow:0 2px 10px rgba(47,187,174,.35);}
+.plan.featured:hover ul li .check{background:var(--amber);color:#1A0F02;box-shadow:0 2px 10px rgba(231,163,62,.35);}
+.plan .integ{font-family:var(--font-mono);font-size:.68rem;color:var(--slate);padding-top:14px;border-top:1px dashed var(--line);transition:border-color .3s ease;}
+.plan:hover .integ{border-color:rgba(47,187,174,.25);}
+.plan .btn{margin-top:auto;overflow:hidden;}
+.plan .btn::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .5s ease;}
+.plan .btn:hover::before{left:100%;}
+.plan .sparkle{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--amber);opacity:0;animation:sparkle 3s ease-in-out infinite;}
+.plan .sparkle:nth-child(1){top:15%;right:12%;animation-delay:0s;}.plan .sparkle:nth-child(2){top:45%;right:8%;animation-delay:1s;}.plan .sparkle:nth-child(3){bottom:20%;left:10%;animation-delay:2s;}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(0);}50%{opacity:.7;transform:scale(1.5);}}
+.plans-note{margin-top:28px;font-size:.88rem;color:var(--slate);text-align:center;}
+.plans-included{margin-top:32px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:36px 34px;box-shadow:0 24px 60px -22px rgba(17,29,21,.14);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1);}
+.plans-included:hover{border-color:rgba(47,187,174,.3);box-shadow:0 30px 70px -22px rgba(47,187,174,.22);transform:translateY(-4px);}
+.plans-included::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--amber),var(--teal));background-size:200% 100%;animation:dividerShift 4s linear infinite;}
+.plans-included-head{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:28px;flex-wrap:wrap;}
+.plans-included-tag{font-family:var(--font-mono);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);background:var(--teal-glow);border:1px solid rgba(47,187,174,.25);padding:6px 14px;border-radius:999px;}
+.plans-included-head h3{font-size:1.35rem;}
+.plans-included-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 48px;max-width:820px;margin:0 auto;}
+@media(max-width:720px){.plans-included-grid{grid-template-columns:1fr;gap:6px;}}
+.plans-included-grid ul{display:flex;flex-direction:column;gap:12px;font-size:.94rem;color:var(--indigo);}
+.plans-included-grid li{display:flex;gap:10px;align-items:flex-start;line-height:1.5;}
+.plans-included-grid li .check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--teal-glow);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;margin-top:1px;}
+.plans-included-grid li::marker{content:none;list-style:none;}
+
+/* ============ AUDIENCE ============ */
+.audience{background:linear-gradient(135deg,var(--ink),#1A2A1E);color:var(--paper);position:relative;overflow:hidden;}
+.audience::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 80% 20%,rgba(47,187,174,.09),transparent 60%),radial-gradient(400px 300px at 20% 80%,rgba(231,163,62,.05),transparent 60%);pointer-events:none;}
+.audience .section-head h2{color:var(--paper);}
+.audience .section-head p{color:#B8C0D2;}
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1;}
+@media(max-width:900px){.audience-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.audience-grid{grid-template-columns:1fr;}}
+.audience-item{background:var(--ink-soft);border:1px solid var(--line-dark);border-radius:14px;padding:20px 22px;font-size:.92rem;color:var(--paper);display:flex;gap:14px;align-items:flex-start;transition:all .4s cubic-bezier(.4,0,.2,1);opacity:0;transform:translateY(16px);}
+.audience-item.in{opacity:1;transform:none;}
+.audience-item:hover{border-color:rgba(47,187,174,.4);box-shadow:0 8px 24px -8px rgba(47,187,174,.2);transform:translateY(-3px) !important;background:var(--ink-soft);}
+.audience-item .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--amber));margin-top:8px;flex:none;transition:all .3s ease;}
+.audience-item:hover .dot{transform:scale(1.5);box-shadow:0 0 0 6px rgba(47,187,174,.15);}
+
+/* ============ PROVA ============ */
+.proof{background:linear-gradient(135deg,var(--ink),#1A2A1E);color:var(--paper);position:relative;overflow:hidden;}
+.proof::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 50% 0%,rgba(47,187,174,.08),transparent 70%);pointer-events:none;}
+.proof .section-head h2{color:var(--paper);}
+.proof .section-head p{color:#B8C0D2;}
+.case-card{background:var(--ink-soft);border:1px solid var(--line-dark);border-radius:var(--radius);padding:36px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;position:relative;z-index:1;}
+@media(max-width:820px){.case-card{grid-template-columns:1fr;gap:26px;}}
+.case-col .eyebrow{color:var(--teal);margin-bottom:12px;}
+.case-col p{color:#B8C0D2;font-size:.94rem;line-height:1.7;}
+.case-flag{font-family:var(--font-mono);font-size:.66rem;color:#5C6478;letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--line-dark);border-radius:8px;padding:10px 14px;margin-top:28px;display:inline-block;}
+
+/* ============ FORM ============ */
+.qualify{background:linear-gradient(180deg,var(--paper-2),var(--paper));}
+.qualify-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;}
+@media(max-width:920px){.qualify-grid{grid-template-columns:1fr;}}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px 34px 30px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
+.form-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--amber),var(--teal));background-size:200% 100%;animation:dividerShift 4s linear infinite;}
+.form-progress{margin-bottom:32px;}
+.form-progress-bar{display:flex;gap:6px;margin-bottom:12px;}
+.form-progress-step{flex:1;height:4px;border-radius:4px;background:var(--paper-3);transition:all .4s ease;}
+.form-progress-step.active{background:linear-gradient(90deg,var(--teal),var(--amber));box-shadow:0 0 8px rgba(47,187,174,.3);}
+.form-progress-step.done{background:var(--green);}
+.form-progress-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--slate-light);font-family:var(--font-mono);}
+.form-progress-label span.active{color:var(--teal);font-weight:600;}
+.form-progress-label span.done{color:var(--green);}
+.form-step{display:none;}
+.form-step.active{display:block;animation:fadeStep .35s ease;}
+@keyframes fadeStep{from{opacity:0;transform:translateX(16px);}to{opacity:1;transform:none;}}
+.step-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--indigo);margin-bottom:6px;}
+.step-subtitle{font-size:.88rem;color:var(--slate);margin-bottom:24px;}
+.field{margin-bottom:18px;}
+.field label{display:flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--indigo);margin-bottom:7px;}
+.field label .required{color:var(--red);}
+.field label .hint{font-weight:400;color:var(--slate-light);font-size:.78rem;margin-left:auto;}
+.field input,.field select{width:100%;padding:13px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--line);font-family:var(--font-body);font-size:.92rem;background:var(--paper);color:var(--indigo);transition:all .25s ease;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px var(--teal-glow);}
+.field input::placeholder{color:var(--slate-light);}
+.field input.error{border-color:var(--red);box-shadow:0 0 0 4px rgba(229,72,77,.1);}
+.field input.success{border-color:var(--green);box-shadow:0 0 0 4px rgba(48,164,108,.1);}
+.field-error{font-size:.78rem;color:var(--red);margin-top:6px;display:none;align-items:center;gap:4px;}
+.field-error.visible{display:flex;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+.field-conditional{border-left:2px solid var(--teal);padding-left:16px;margin-left:2px;margin-bottom:18px;animation:fadeStep .3s ease;}
+.form-nav{display:flex;gap:12px;margin-top:24px;}
+.form-nav .btn{flex:1;}
+.btn-back{background:var(--paper-2);color:var(--indigo);border:1.5px solid var(--line);flex:0 0 auto !important;padding:15px 24px;}
+.btn-back:hover{background:var(--paper-3);border-color:var(--indigo);}
+.char-count{font-size:.72rem;color:var(--slate-light);text-align:right;margin-top:4px;font-family:var(--font-mono);}
+.form-success{display:none;text-align:center;padding:40px 20px;}
+.form-success.visible{display:block;animation:fadeStep .4s ease;}
+.form-success-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--green-glow),rgba(48,164,108,.05));color:var(--green);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px;animation:successPop .5s cubic-bezier(.4,0,.2,1);}
+@keyframes successPop{0%{transform:scale(0);opacity:0;}50%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+.form-success h3{font-family:var(--font-display);font-size:1.4rem;margin-bottom:10px;}
+.form-success p{font-size:.95rem;max-width:380px;margin:0 auto;}
+.form-foot{font-size:.78rem;color:var(--slate);margin-top:16px;text-align:center;}
+.journey{display:flex;flex-direction:column;gap:20px;}
+.journey-step{display:flex;gap:18px;align-items:flex-start;}
+.journey-ico{flex:none;width:38px;height:38px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.78rem;color:var(--teal);font-weight:700;box-shadow:var(--shadow-sm);transition:all .3s ease;}
+.journey-step:hover .journey-ico{background:var(--teal);color:#fff;border-color:var(--teal);transform:scale(1.1);}
+.journey-step p{font-size:.94rem;line-height:1.6;}
+.journey-note{margin-top:12px;background:linear-gradient(135deg,var(--ink),#1A2238);color:var(--paper);border-radius:var(--radius);padding:24px 26px;font-size:.94rem;line-height:1.65;position:relative;overflow:hidden;}
+.journey-note::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(231,163,62,.12),transparent 50%),radial-gradient(circle at 20% 80%,rgba(47,187,174,.08),transparent 50%);pointer-events:none;}
+.journey-note strong{color:var(--amber);position:relative;z-index:1;}
+
+/* ============ FAQ ============ */
+.faq{background:var(--paper);}
+.faq-list{max-width:820px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 4px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--font-body);font-weight:600;font-size:1.02rem;color:var(--indigo);transition:color .2s ease;}
+.faq-q:hover{color:var(--teal);}
+.faq-q:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:4px;}
+.faq-q .plus{font-family:var(--font-mono);font-size:1.3rem;color:var(--teal);transition:all .3s ease;flex:none;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--teal-glow);}
+.faq-item.open .faq-q .plus{transform:rotate(45deg);background:var(--teal);color:#fff;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);}
+.faq-item.open .faq-a{max-height:900px;}
+.faq-a p{padding:0 4px 22px;font-size:.96rem;line-height:1.7;}
+
+/* ============ CTA STRIP ============ */
+.cta-strip{padding:52px 0;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--amber),var(--amber-deep),var(--amber));background-size:200% 100%;animation:ctaGradient 4s ease infinite;}
+@keyframes ctaGradient{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.cta-strip::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23000' opacity='.06'/%3E%3C/svg%3E");pointer-events:none;}
+.cta-strip .wrap{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-strip h3{font-size:clamp(1.2rem,2.2vw,1.5rem);color:#1A0F02;}
+.cta-strip .btn-primary{background:var(--ink);color:var(--paper);box-shadow:0 8px 24px -8px rgba(0,0,0,.4);}
+.cta-strip .btn-primary:hover{background:#141B2D;box-shadow:0 12px 32px -6px rgba(0,0,0,.3);}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#8A92A8;padding:48px 0 28px;position:relative;}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--amber),var(--teal));background-size:200% 100%;animation:dividerShift 4s linear infinite;}
+.foot-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid var(--line-dark);}
+.foot-sep{width:1px;height:20px;background:var(--line-dark);flex:none;}
+.foot-row a{font-size:.88rem;transition:color .2s ease;white-space:nowrap;}
+.foot-row a:hover{color:var(--teal);}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;font-size:.78rem;flex-wrap:wrap;gap:12px;}
+
+/* ============ UTILITIES ============ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+.whatsapp-btn{position:fixed;bottom:32px;right:32px;z-index:90;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px -4px rgba(37,211,102,.5);transition:all .3s ease;font-size:1.6rem;animation:whatsappPulse 2s ease-in-out infinite;}
+@keyframes whatsappPulse{0%,100%{box-shadow:0 8px 24px -4px rgba(37,211,102,.5);}50%{box-shadow:0 8px 32px -2px rgba(37,211,102,.6),0 0 0 8px rgba(37,211,102,.08);}}
+.whatsapp-btn:hover{transform:scale(1.1);}
+.whatsapp-btn .tooltip{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;font-size:.78rem;font-weight:500;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease;}
+.whatsapp-btn:hover .tooltip{opacity:1;}
+@media(max-width:720px){.whatsapp-btn{bottom:80px;right:20px;width:54px;height:54px;font-size:1.4rem;}.whatsapp-btn .tooltip{display:none;}}
+.back-to-top{position:fixed;bottom:32px;left:32px;z-index:90;width:48px;height:48px;border-radius:50%;background:var(--indigo);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(20px);transition:all .3s ease;font-size:1.2rem;}
+.back-to-top.visible{opacity:1;transform:none;}
+.back-to-top:hover{background:var(--teal);transform:translateY(-2px);}
+.floating-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;padding:16px 20px;background:rgba(11,15,26,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line-dark);}
+.floating-cta .btn{width:100%;padding:14px;}
+@media(max-width:720px){.floating-cta{display:block;}footer{padding-bottom:80px;}}
+
+/* ============ DATACRAZY-INSPIRED EFFECTS ============ */
+
+/* Gradient Text */
+.gradient-text{background:linear-gradient(135deg,var(--teal),var(--amber),var(--teal));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:gradientText 4s ease infinite;}
+/* Text Hightlight (marca-texto âmbar) */
+.highlight{position:relative;display:inline;white-space:pre-wrap;color:var(--indigo);padding:.06em .14em;border-radius:4px;background:linear-gradient(180deg,transparent 35%,rgba(231,163,62,.55) 35%,rgba(231,163,62,.75) 92%,transparent 96%);box-decoration-break:clone;-webkit-box-decoration-break:clone;transition:background .3s ease;}
+.highlight:hover{background:linear-gradient(180deg,transparent 35%,rgba(231,163,62,.75) 35%,rgba(231,163,62,.9) 92%,transparent 96%);}
+@keyframes gradientText{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* Breathing Glow Layers (brilho) */
+.brilho{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;mix-blend-mode:plus-lighter;}
+.brilho-1{top:-1px;width:150%;height:10px;background:linear-gradient(to right,transparent,var(--teal),transparent);filter:blur(35px);opacity:.7;}
+.brilho-2{top:-2px;width:100%;height:10px;background:linear-gradient(to right,transparent,var(--teal),transparent);filter:blur(40px);opacity:.5;animation:respirar 3s ease-in-out infinite;}
+.brilho-3{top:-40px;width:90%;height:100px;background:linear-gradient(to right,transparent,var(--teal),transparent);filter:blur(20px);opacity:.5;animation:respirar 6s ease-in-out infinite;}
+.brilho-4{top:-10px;width:100%;height:15px;background:linear-gradient(to right,transparent 20%,var(--amber),transparent 80%);filter:blur(8px);opacity:.5;animation:respirar 3s ease-in-out infinite;}
+.brilho-5{top:-20px;width:100%;height:50px;background:linear-gradient(to right,transparent 20%,var(--amber),transparent 80%);filter:blur(20px);opacity:1;animation:respirar 3s ease-in-out infinite;}
+@keyframes respirar{0%,100%{transform:translateX(-50%) scale(1);opacity:.6;}50%{transform:translateX(-50%) scale(1.05);opacity:1;}}
+
+/* Hero Bottom Gradient Fade */
+
+
+/* Floating Particles */
+.particles-container{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.particle{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--teal);opacity:0;animation:particleFloat linear infinite;}
+.particle:nth-child(odd){background:var(--amber);}
+@keyframes particleFloat{0%{transform:translateY(100vh) scale(0);opacity:0;}10%{opacity:.6;}90%{opacity:.6;}100%{transform:translateY(-10vh) scale(1);opacity:0;}}
+
+/* Floating Icons Animation */
+@keyframes floatingIcon{0%,100%{transform:translate(0,0);}50%{transform:translate(0,-25px);}}
+.float-icon{animation:floatingIcon 6s ease-in-out infinite;}
+.float-icon-delayed{animation:floatingIcon 8s ease-in-out 1s infinite;}
+
+/* Enhanced Button Shine Sweep */
+.btn-shine{position:relative;overflow:hidden;}
+.btn-shine::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s ease;pointer-events:none;}
+.btn-shine:hover::after{left:130%;}
+
+/* Glassmorphism */
+.glass{background:rgba(255,255,255,.6);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border:1px solid rgba(255,255,255,.4);}
+.glass-dark{background:rgba(11,15,26,.7);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border:1px solid rgba(255,255,255,.08);}
+
+/* Blur-Reveal Effect */
+.blur-reveal{filter:blur(8px);opacity:0;transform:translateY(20px);transition:filter .8s cubic-bezier(.4,0,.2,1),opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1);}
+.blur-reveal.in{filter:blur(0);opacity:1;transform:none;}
+
+/* Animated Flow Lines (SVG dash animation) */
+.flow-line{fill:none;stroke:var(--teal);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:10 10;animation:flowMarch 2s linear infinite;opacity:.4;}
+.flow-line:nth-child(even){stroke:var(--amber);animation-direction:reverse;}
+@keyframes flowMarch{to{stroke-dashoffset:-20;}}
+
+/* Luminous Pulsing (luzpulsante) */
+.luz-pulse{animation:luzz 4s ease infinite 2s;}
+@keyframes luzz{0%,100%{filter:brightness(1);}86%{filter:brightness(1);}87%{filter:brightness(1.6) saturate(1.5);}88%{filter:brightness(1.2);}90%{filter:brightness(2.5);}95%{filter:brightness(1);}}
+
+/* Plan shimmer enhanced */
+.plan.featured .plan-shimmer{position:absolute;inset:0;border-radius:var(--radius);overflow:hidden;pointer-events:none;}
+.plan.featured .plan-shimmer::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(231,163,62,.08),transparent,rgba(47,187,174,.06),transparent);animation:shimmerRotate 6s linear infinite;}
+@keyframes shimmerRotate{to{transform:rotate(360deg);}}
+
+/* Mouse Glow Enhanced */
+.mouse-glow{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(47,187,174,.04),transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:left .15s ease-out,top .15s ease-out;}
+.mouse-glow-teal{background:radial-gradient(circle,rgba(47,187,174,.05),transparent 70%);}
+
+/* Header enhanced transitions */
+header{transition:all .4s cubic-bezier(.4,0,.2,1);}
+header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3);}
+
+/* Perspective tilt on proof cards */
+.perspective-card{transform:perspective(900px) rotateX(2deg);transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.perspective-card:hover{transform:perspective(900px) rotateX(0deg) translateY(-4px);}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CYZK445MYC');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '876866025376843');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="mouse-glow" id="mouseGlow"></div>
+<a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><img src="../logos-ive/logo-ive-limao.png" alt="IVE — Inteligência em Vendas" height="36" style="height:36px;width:auto;display:block;"></a>
+    <nav class="nav-links"><a href="#produto">Produto</a><a href="#diferencial">Como funciona</a><a href="#integracoes">Integrações</a><a href="#planos">Planos</a><a href="#faq">Dúvidas</a></nav>
+    <div class="nav-cta">
+      <a href="#qualificacao" class="btn btn-primary btn-sm">Falar com especialista</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="toggleMobileMenu()">☰</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#produto" onclick="closeMobileMenu()">Produto</a>
+  <a href="#diferencial" onclick="closeMobileMenu()">Como funciona</a>
+  <a href="#integracoes" onclick="closeMobileMenu()">Integrações</a>
+  <a href="#planos" onclick="closeMobileMenu()">Planos</a>
+  <a href="#faq" onclick="closeMobileMenu()">Dúvidas</a>
+  <a href="#qualificacao" class="btn btn-primary" onclick="closeMobileMenu()">Conhecer o IVE CRM</a>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="orb orb-teal"></div>
+    <div class="orb orb-amber"></div>
+    <div class="orb orb-teal" style="opacity:.25;"></div>
+    <!-- Breathing glow layers -->
+    <div class="brilho brilho-1"></div>
+    <div class="brilho brilho-2"></div>
+    <div class="brilho brilho-3"></div>
+    <div class="brilho brilho-4"></div>
+    <div class="brilho brilho-5"></div>
+    <!-- Floating particles -->
+    <div class="particles-container" id="particles"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">IVE - INTELIGÊNCIA EM VENDAS</div>
+        <h1><span class="gradient-text" id="typewriter"></span><span class="typing-cursor"></span></h1>
+        <ul class="hero-sub hero-list">
+          <li><span class="list-dot"></span><span><strong>Atendimentos <em>automáticos</em> e centralizados</strong></span></li>
+          <li><span class="list-dot"></span><span><strong>Agentes de IA</strong> + automatização de tarefas</span></li>
+          <li><span class="list-dot"></span><span><strong>Organização do processo comercial</strong></span></li>
+          <li><span class="list-dot"></span><span><strong>Implantação <em>personalizada</em></strong> para sua empresa</span></li>
+        </ul>
+        <div class="hero-ctas">
+          <a href="#qualificacao" class="btn btn-primary btn-pulse btn-shine">Quero uma solução para minha empresa</a>
+          <a href="#produto" class="btn btn-ghost">Ver como funciona ↓</a>
+        </div>
+
+      </div>
+      <div class="hero-visual">
+        <div class="product-frame">
+          <div class="frame-bar"><span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span><small>app.ivecrm.com/painel</small></div>
+          <div class="frame-body">
+            <div class="carousel" id="carousel">
+              <div class="carousel-track">
+                <img class="carousel-slide active" src="../capa-site/capa-1.png" alt="Visão do IVE CRM: funil comercial, atendimento e IA em operação">
+              </div>
+              <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-badge">Lead chega → IA responde → CRM registra, ao vivo</div>
+      </div>
+    </div>
+    <div class="trust-strip">
+      <div class="wrap trust-inner">
+        <div class="trust-message">
+          <span class="trust-txt">Você, sua equipe e todos os seus canais de atendimento em um único lugar.</span>
+        </div>
+        <div class="trust-logos">
+          <div class="soc-badge" data-color="#25D366" title="WhatsApp"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="soc-badge" data-color="#229ED9" title="Telegram"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="Telegram"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></div>
+          <div class="soc-badge" data-color="#E4405F" title="Instagram"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="Instagram"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+          <div class="soc-badge" data-color="#0084FF" title="Facebook Messenger"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="Facebook Messenger"><path d="M12 0C5.24 0 0 4.952 0 11.64c0 3.499 1.434 6.522 3.769 8.61a.96.96 0 01.323.684l.065 2.135a.96.96 0 001.348.849l2.381-1.05a.958.958 0 01.641-.047c1.09.3 2.256.459 3.473.459 6.76 0 12-4.952 12-11.64S18.76 0 12 0zm7.48 8.88l-3.786 6.024a1.92 1.92 0 01-2.763.541l-2.977-2.228a.48.48 0 00-.579 0L6.8 15.728a.96.96 0 01-1.386-1.248l3.786-6.024a1.92 1.92 0 012.763-.541l2.977 2.228a.48.48 0 00.579 0l2.87-2.149a.96.96 0 011.09 0 .96.96 0 011.386 1.248-.96.96 0 01-.39.318z"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOR -->
+<section class="pain" id="dor">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Seu problema pode não ser falta de ferramentas. <span class="highlight">Pode ser falta de um processo conectado.</span></h2></div>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="ico">01</div><p><strong>Atendimento manual no WhatsApp</strong>Leads esperando resposta e oportunidades perdidas por demora no atendimento.</p></div>
+      <div class="pain-card"><div class="ico">02</div><p><strong>Plataformas e pessoas desconectadas</strong>Conversas espalhadas entre WhatsApps, atendentes e departamentos diferentes.</p></div>
+      <div class="pain-card"><div class="ico">03</div><p><strong>Falta de retorno ao cliente</strong>Follow-ups esquecidos e falta de visibilidade sobre o próximo passo de cada negociação.</p></div>
+      <div class="pain-card"><div class="ico">04</div><p><strong>Perda de tempo com tarefas repetitivas</strong>Trabalho manual para consultar sistemas, montar orçamento, agendar e atualizar o CRM.</p></div>
+      <div class="pain-card"><div class="ico">05</div><p><strong>Falta de controle da operação</strong>Dificuldade de medir atendimento, produtividade e andamento real das oportunidades.</p></div>
+      <div class="pain-card"><div class="ico">06</div><p><strong>Soluções que não se adaptam à realidade da empresa</strong>Cada ferramenta nova promete resolver, mas nenhuma se conecta ao seu processo de fato.</p></div>
+    </div>
+    <div class="pain-flip flip-light reveal">Sua empresa não precisa se adaptar ao CRM. <span>O CRM e as automações precisam se adaptar ao processo da sua empresa.</span></div>
+    <div class="section-cta reveal"><p>Identificou algum desses problemas?</p><a href="#qualificacao" class="btn btn-primary btn-sm">Vamos conversar sobre sua operação</a></div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section class="pillars" id="produto">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Uma solução, quatro pilares trabalhando juntos.</h2><p>Atendimento, vendas, automação e IA — não como módulos separados, mas como um único processo.</p></div>
+    <div class="pillar-grid">
+      <div class="pillar"><a class="pillar-shot" href="../pilares-img/PILAR_01.png" data-lightbox="0"><img src="../pilares-img/PILAR_01.png" alt="Caixa de entrada do IVE CRM" loading="lazy"><div class="tag">Caixa de entrada</div><span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM20 20l-4.3-4.3M8.5 10.5h4M10.5 8.5v4"/></svg></span></a><div class="pillar-body"><span class="num">PILAR 01</span><h3>Atendimento</h3><p>WhatsApp e canais centralizados, múltiplos atendentes, departamentos e transferência.</p></div></div>
+      <div class="pillar"><a class="pillar-shot" href="../pilares-img/PILAR_02.png" data-lightbox="1"><img src="../pilares-img/PILAR_02.png" alt="Funil de vendas do IVE CRM" loading="lazy"><div class="tag">Funil de vendas</div><span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM20 20l-4.3-4.3M8.5 10.5h4M10.5 8.5v4"/></svg></span></a><div class="pillar-body"><span class="num">PILAR 02</span><h3>CRM e Vendas</h3><p>Contatos, oportunidades, funil, responsáveis e gestão completa do comercial.</p></div></div>
+      <div class="pillar"><a class="pillar-shot" href="../pilares-img/PILAR_03.png" data-lightbox="2"><img src="../pilares-img/PILAR_03.png" alt="Automação do IVE CRM" loading="lazy"><div class="tag">Automação</div><span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM20 20l-4.3-4.3M8.5 10.5h4M10.5 8.5v4"/></svg></span></a><div class="pillar-body"><span class="num">PILAR 03</span><h3>Automação</h3><p>Follow-ups, mensagens programadas e ações automáticas do processo interno.</p></div></div>
+      <div class="pillar"><a class="pillar-shot" href="../pilares-img/PILAR_04.png" data-lightbox="3"><img src="../pilares-img/PILAR_04.png" alt="IA em ação no IVE CRM" loading="lazy"><div class="tag">IA em ação</div><span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM20 20l-4.3-4.3M8.5 10.5h4M10.5 8.5v4"/></svg></span></a><div class="pillar-body"><span class="num">PILAR 04</span><h3>Inteligência Artificial</h3><p>IA atendendo, qualificando, executando tarefas e alimentando o CRM.</p></div></div>
+    </div>
+    <div class="section-cta reveal"><p>Quer ver na prática?</p><a href="#qualificacao" class="btn btn-teal btn-sm">Agendar demonstração</a></div>
+  </div>
+</section>
+
+<!-- DIFERENCIAL -->
+<section class="diff" id="diferencial">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Mais do que um CRM, você recebe uma solução implantada para sua operação.</h2></div>
+    <div class="process">
+      <svg class="process-line" viewBox="0 0 2 500" preserveAspectRatio="none" style="position:absolute;left:24px;top:16px;bottom:16px;width:2px;height:calc(100% - 32px);"><line class="flow-line" x1="1" y1="0" x2="1" y2="500"/></svg>
+      <div class="step reveal"><div class="step-num">01</div><div class="step-body"><h4>Entendemos sua empresa</h4><p>Atendimento, processo comercial, equipe, ferramentas, gargalos e objetivos.</p></div></div>
+      <div class="step reveal"><div class="step-num">02</div><div class="step-body"><h4>Estruturamos o processo</h4><p>Ajudamos a desenhar etapas, departamentos, responsáveis e fluxos.</p></div></div>
+      <div class="step reveal"><div class="step-num">03</div><div class="step-body"><h4>Configuramos o IVE CRM</h4><p>Usuários, funis, campos, canais, regras e estrutura da operação.</p></div></div>
+      <div class="step reveal"><div class="step-num">04</div><div class="step-body"><h4>Desenvolvemos a automação</h4><p>Criamos fluxos e integrações de acordo com o que realmente precisa.</p></div></div>
+      <div class="step reveal"><div class="step-num">05</div><div class="step-body"><h4>Treinamos a IA</h4><p>Contexto, regras, conhecimentos, linguagem e funções específicas.</p></div></div>
+      <div class="step reveal"><div class="step-num">06</div><div class="step-body"><h4>Testamos e homologamos</h4><p>Validamos o funcionamento completo antes da entrada em produção.</p></div></div>
+      <div class="step reveal"><div class="step-num">07</div><div class="step-body"><h4>Treinamos e acompanhamos</h4><p>A IVE orienta a utilização e acompanha a implantação.</p></div></div>
+    </div>
+    <div class="section-cta reveal"><p>Pronto para começar?</p><a href="#qualificacao" class="btn btn-primary btn-sm">Iniciar meu diagnóstico</a></div>
+  </div>
+</section>
+
+<!-- INTEGRAÇÕES -->
+<section class="integrations" id="integracoes">
+  <div class="wrap">
+    <div class="int-layout">
+      <div class="reveal">
+        <h2>Conectamos o IVE CRM às ferramentas que já fazem parte da sua operação.</h2>
+        <p style="margin-top:16px;margin-bottom:28px;">Não entregamos só uma API disponível — nós fazemos a integração para você.</p>
+        <div class="int-chips"><span class="chip">WhatsApp</span><span class="chip">Instagram</span><span class="chip">Google Calendar</span><span class="chip">ERPs</span><span class="chip">APIs externas</span><span class="chip">Bancos de dados</span><span class="chip">Planilhas</span><span class="chip">Sistemas internos</span></div>
+      </div>
+      <div class="reveal">
+        <div class="int-visual">
+          <img src="../diagramas/img-diagrama.png" alt="Diagrama de integrações do IVE CRM com WhatsApp, Instagram, ERP, agenda, APIs e planilhas">
+        </div>
+        <div class="int-note"><strong>Sua operação, totalmente conectada:</strong> integramos o IVE CRM às ferramentas que sua empresa já utiliza e construímos o fluxo de ponta a ponta.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="plans" id="planos">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Conheça nossos Agentes de IA</h2>
+      <p>Planos a partir de <strong style="color:var(--indigo);font-weight:700;">R$ 489/mês</strong></p>
+      <p>Valores completos e escopo de implantação são definidos após conversa de diagnóstico.</p>
+    </div>
+    <div class="plan-grid" id="planGrid">
+      <div class="plan" data-delay="0"><div class="sparkle"></div><div class="plan-icon">💬</div><h3>IVE Atendimento</h3><p class="desc">Função: Atender, tirar dúvidas, qualificar e direcionar para atendimento humano.</p><ul><li><span class="check">✓</span>Responde dúvidas sobre produtos e serviços</li><li><span class="check">✓</span>Qualifica e conduz atendimento</li><li><span class="check">✓</span>Entende o contexto</li><li><span class="check">✓</span>Memória de atendimento</li><li><span class="check">✓</span>Envio de mídias (fotos/vídeos/pdf)</li><li><span class="check">✓</span>Transfere para setores/departamentos corretos</li></ul><a href="#qualificacao" class="btn btn-ghost on-dark btn-block btn-sm">Quero este plano</a></div>
+      <div class="plan" data-delay="100"><div class="sparkle"></div><div class="plan-icon">🚀</div><h3>IVE Comercial</h3><p class="desc">Função: Atender, consultar valores e passar orçamentos.</p><ul><li><span class="check">✓</span>Inclui tudo do IVE Atendimento</li><li><span class="check">✓</span>Consulta de produtos e preços</li><li><span class="check">✓</span>Cálculos e geração de orçamentos</li><li><span class="check">✓</span>Apresentação de opções ao cliente</li><li><span class="check">✓</span>Registro e avanço no funil comercial</li><li><span class="check">✓</span>Notificações após envio de orçamento</li></ul><a href="#qualificacao" class="btn btn-ghost on-dark btn-block btn-sm">Quero este plano</a></div>
+      <div class="plan featured" data-delay="200"><div class="plan-shimmer"></div><div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div><div class="plan-flag">Mais escolhido</div><div class="plan-icon">📅</div><h3>IVE Agenda</h3><p class="desc">Função: Marcar compromissos, gestão de agenda, confirmações e lembretes.</p><ul><li><span class="check">✓</span>Inclui tudo do IVE Atendimento</li><li><span class="check">✓</span>Integração com Google Calendar</li><li><span class="check">✓</span>Agendamentos de visitas/reuniões/consultas</li><li><span class="check">✓</span>Confirmação de presença</li><li><span class="check">✓</span>Relatórios de agendamentos</li><li><span class="check">✓</span>Envio de mensagem após agendamento</li></ul><a href="#qualificacao" class="btn btn-primary btn-block btn-sm">Quero este plano</a></div>
+      <div class="plan" data-delay="300"><div class="sparkle"></div><div class="plan-icon">⚙️</div><h3>IVE Personalizado</h3><p class="desc">Projetos personalizados de acordo com a necessidade de cada empresa.</p><ul><li><span class="check">✓</span>Integração com outros CRM's</li><li><span class="check">✓</span>Integração com ERP e APIs</li><li><span class="check">✓</span>Múltiplos agentes e departamentos</li><li><span class="check">✓</span>Automações internas e backoffice</li><li><span class="check">✓</span>Desenvolvimento 100% personalizado</li><li><span class="check">✓</span>Projeto definido após diagnóstico</li></ul><a href="#qualificacao" class="btn btn-ghost on-dark btn-block btn-sm">Quero este plano</a></div>
+    </div>
+    <div class="plans-included reveal">
+      <div class="plans-included-head"><span class="plans-included-tag">IVE CRM</span><h3>Incluso em todos os planos</h3></div>
+      <div class="plans-included-grid">
+        <ul>
+          <li><span class="check">✓</span>Plataforma de atendimento</li>
+          <li><span class="check">✓</span>Criação de Chatbots <strong>ILIMITADO</strong></li>
+          <li><span class="check">✓</span>Divisão de departamentos e usuários</li>
+          <li><span class="check">✓</span>Distribuição de atendimentos</li>
+          <li><span class="check">✓</span>Múltiplos funis de vendas (CRM Kanban)</li>
+        </ul>
+        <ul>
+          <li><span class="check">✓</span>Agendamentos de mensagens</li>
+          <li><span class="check">✓</span>Chat interno</li>
+          <li><span class="check">✓</span>Campanhas de disparo</li>
+          <li><span class="check">✓</span>Dashboard com indicadores de atendimento</li>
+          <li><span class="check">✓</span>API aberta para outras integrações</li>
+        </ul>
+      </div>
+    </div>
+    <p class="plans-note">Valores de implantação são definidos com você após o diagnóstico. <a href="#qualificacao" style="color:var(--indigo);font-weight:600;text-decoration:underline;text-underline-offset:3px;">Falar sobre meu projeto →</a></p>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Se sua operação se parece com alguma dessas situações, o IVE CRM é para você.</h2></div>
+    <div class="audience-grid">
+      <div class="audience-item"><span class="dot"></span>Empresas que atendem pelo WhatsApp</div>
+      <div class="audience-item"><span class="dot"></span>Operações com uma ou mais pessoas no comercial</div>
+      <div class="audience-item"><span class="dot"></span>Empresas que recebem leads e precisam responder rápido</div>
+      <div class="audience-item"><span class="dot"></span>Times que precisam organizar o processo comercial</div>
+      <div class="audience-item"><span class="dot"></span>Negócios com tarefas repetitivas automatizáveis</div>
+      <div class="audience-item"><span class="dot"></span>Empresas que perdem oportunidades por falta de follow-up</div>
+      <div class="audience-item"><span class="dot"></span>Operações que consultam preços e estoque no atendimento</div>
+      <div class="audience-item"><span class="dot"></span>Empresas que trabalham com agendamentos</div>
+      <div class="audience-item"><span class="dot"></span>Sistemas que precisam conversar entre si</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="qualify" id="qualificacao">
+  <div class="wrap">
+    <div class="qualify-grid">
+      <div class="reveal">
+        <h2 style="margin-bottom:24px;">Fale sobre a sua operação</h2>
+        <div class="form-card glass">
+          <div class="form-progress"><div class="form-progress-bar"><div class="form-progress-step active" id="prog1"></div><div class="form-progress-step" id="prog2"></div><div class="form-progress-step" id="prog3"></div></div><div class="form-progress-label"><span class="active" id="progLabel1">Seus dados</span><span id="progLabel2">Sua operação</span><span id="progLabel3">Necessidades</span></div></div>
+          <form id="qualifyForm" onsubmit="handleFormSubmit(event)" novalidate>
+            <div class="form-step active" id="step1">
+              <div class="step-title">Vamos começar pelos seus dados</div>
+              <div class="field-row">
+                <div class="field"><label>Nome <span class="required">*</span></label><input type="text" placeholder="Seu nome" required data-validate="name"><div class="field-error">Informe seu nome</div></div>
+                <div class="field"><label>WhatsApp <span class="required">*</span></label><input type="tel" placeholder="(00) 00000-0000" required data-mask="phone" data-validate="phone"><div class="field-error">WhatsApp inválido</div></div>
+              </div>
+              <div class="field"><label>E-mail <span class="required">*</span></label><input type="email" id="email" placeholder="voce@empresa.com.br" required data-validate="email"><div class="field-error">E-mail inválido</div></div>
+            </div>
+            <div class="form-step" id="step2">
+              <div class="step-title">Sobre a operação</div>
+              <div class="step-subtitle">Para entendermos o contexto.</div>
+              <div class="field"><label>Segmento de Atuação <span class="required">*</span></label><input type="text" placeholder="Ex: clínica, imobiliária, e-commerce…" required data-validate="required"><div class="field-error">Informe o segmento</div></div>
+              <div class="field"><label>Ja utiliza CRM?</label><select id="ja-usa"><option value="">Selecione</option><option value="nao">Não</option><option value="sim">Sim</option></select></div>
+              <div class="field-conditional" id="cond-plataforma" style="display:none;"><div class="field"><label>Qual plataforma?</label><input type="text" placeholder="Nome da ferramenta"></div></div>
+              <div class="field"><label>Quantas pessoas? <span class="required">*</span></label><select required data-validate="select"><option value="">Selecione</option><option>Somente eu</option><option>Até 3</option><option>4 a 5</option><option>6 a 10</option><option>11 a 20</option><option>Mais de 20</option></select><div class="field-error">Selecione</div></div>
+            </div>
+            <div class="form-step" id="step3">
+              <div class="step-title">O que você precisa?</div>
+              <div class="step-subtitle">Para direcionarmos ao especialista certo.</div>
+              <div class="field"><label>O que pretende automatizar? <span class="required">*</span></label><select required data-validate="select"><option value="">Selecione</option><option>Atendimento e qualificação</option><option>Processo comercial e orçamentos</option><option>Agendamentos</option><option>Integrações personalizadas</option><option>Ainda não sei</option></select><div class="field-error">Selecione</div></div>
+              <div class="field"><label>Observação <span class="hint">Opcional</span></label><input type="text" placeholder="Ex: preciso integrar com ERP…" maxlength="200"><div class="char-count"><span id="obs-count">0</span>/200</div></div>
+            </div>
+            <div class="form-success" id="formSuccess"><div class="form-success-icon">✓</div><h3>Recebemos suas informações!</h3><p>Um especialista vai entrar em contato pelo WhatsApp em breve.</p></div>
+            <div class="form-nav" id="formNav"><button type="button" class="btn btn-back" id="btnBack" onclick="prevStep()" style="display:none;">← Voltar</button><button type="button" class="btn btn-primary" id="btnNext" onclick="nextStep()">Continuar →</button><button type="submit" class="btn btn-primary btn-block" id="btnSubmit" style="display:none;"><span class="btn-text">Enviar e falar com especialista</span><span class="spinner"></span></button></div>
+            <p class="form-foot">Resposta em minutos. Sem compromisso.</p>
+          </form>
+        </div>
+      </div>
+      <div class="reveal">
+        <h2 style="margin-bottom:24px;font-size:1.8rem;">O que acontece agora?</h2>
+        <div class="journey">
+          <div class="journey-step"><div class="journey-ico">01</div><p>Seu contato entra automaticamente no IVE CRM, com seus dados organizados.</p></div>
+          <div class="journey-step"><div class="journey-ico">02</div><p>A IVE IA inicia o atendimento pelo WhatsApp, entende sua necessidade e responde suas primeiras dúvidas.</p></div>
+          <div class="journey-step"><div class="journey-ico">03</div><p>A IA identifica o seu cenário e conduz a conversa e encontra o melhor horário para uma reunião.</p></div>
+          <div class="journey-step"><div class="journey-ico">04</div><p>A reunião é agendada e nosso especialista recebe você com todo o histórico do atendimento já organizado.</p></div>
+        </div>
+        <div class="journey-note">Você não preenche um formulário para esperar um retorno. Você inicia, na prática, uma experiência com o IVE CRM.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip"><div class="wrap"><h3>Pronto para ver o processo da sua empresa rodando dentro do IVE CRM?</h3><a href="#qualificacao" class="btn btn-primary">Falar com um especialista</a></div></div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal"><div class="eyebrow">Perguntas frequentes</div><h2>Dúvidas comuns antes de começar.</h2></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">O que é o IVE CRM? <span class="plus">+</span></button><div class="faq-a"><p>O IVE CRM é uma plataforma de atendimento, vendas e automação desenvolvida para centralizar a operação comercial da sua empresa. Em um só ambiente, sua equipe pode organizar atendimentos, acompanhar leads, estruturar funis, utilizar Inteligência Artificial e automatizar processos que hoje dependem de tarefas manuais.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">O IVE CRM é apenas um sistema de CRM? <span class="plus">+</span></button><div class="faq-a"><p>Não. O CRM é apenas uma parte da solução. A IVE combina CRM, atendimento, Inteligência Artificial, automações e integrações para construir uma operação mais eficiente. Nosso objetivo não é simplesmente entregar uma ferramenta, mas ajudar sua empresa a colocar processos e automações para funcionar na prática.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Como a Inteligência Artificial funciona dentro do IVE CRM? <span class="plus">+</span></button><div class="faq-a"><p>A IA é configurada e treinada de acordo com a realidade da sua empresa. Ela pode atender clientes 24 horas por dia, responder dúvidas, qualificar leads, coletar informações, enviar materiais, realizar follow-ups, consultar dados, fazer agendamentos e direcionar o atendimento para a pessoa ou departamento correto. As funções são definidas de acordo com cada projeto.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">A Inteligência Artificial substitui minha equipe de atendimento ou comercial? <span class="plus">+</span></button><div class="faq-a"><p>Não necessariamente. A proposta é fazer a IA trabalhar junto com a sua equipe. Ela pode assumir tarefas repetitivas, fazer o primeiro atendimento, qualificar oportunidades e resolver demandas mais simples. Quando a intervenção humana for necessária, o atendimento pode ser transferido para um colaborador com todo o contexto da conversa.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Minha empresa ainda não tem processos comerciais bem definidos. O IVE CRM pode ajudar? <span class="plus">+</span></button><div class="faq-a"><p>Sim. Esse é justamente um dos diferenciais da IVE. Não esperamos que sua empresa chegue com toda a operação estruturada. Durante a implantação, podemos ajudar a definir departamentos, etapas do funil, responsáveis, regras de atendimento e oportunidades de automação, organizando o CRM de acordo com a realidade do seu negócio.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Já utilizo outro CRM. Preciso trocar de sistema para trabalhar com a IVE? <span class="plus">+</span></button><div class="faq-a"><p>Não necessariamente. Se sua empresa já utiliza outro CRM ou possui sistemas importantes para a operação, podemos avaliar um projeto personalizado de integração e automação. Quando as ferramentas disponibilizam os recursos técnicos necessários, como APIs e webhooks, podemos desenvolver soluções que conectem Inteligência Artificial, automações e outros sistemas à estrutura que sua empresa já utiliza.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">O IVE CRM pode ser integrado às ferramentas que minha empresa já usa? <span class="plus">+</span></button><div class="faq-a"><p>Sim. Podemos integrar o IVE CRM a diferentes ferramentas e sistemas, como WhatsApp, Instagram, Google Calendar, ERPs, planilhas, bancos de dados, APIs externas e sistemas internos. Cada integração é analisada de acordo com a necessidade da operação e com os recursos disponibilizados pela ferramenta que será conectada.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">As automações são iguais para todas as empresas? <span class="plus">+</span></button><div class="faq-a"><p>Não. Cada empresa possui processos, equipes e necessidades diferentes. Por isso, além das funcionalidades disponíveis no IVE CRM, analisamos a operação para identificar onde a automação realmente pode gerar ganho de produtividade. Podemos desenvolver fluxos para qualificação de leads, follow-ups, distribuição de atendimentos, agendamentos, atualização do CRM, geração de orçamentos, consultas a sistemas e diversos outros processos.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Para quais tipos de empresa o IVE CRM é indicado? <span class="plus">+</span></button><div class="faq-a"><p>O IVE CRM é especialmente indicado para empresas que possuem volume de atendimentos ou oportunidades comerciais e precisam organizar melhor sua operação. Se sua empresa atende clientes pelo WhatsApp ou outros canais, possui uma equipe comercial ou de atendimento e sente que leads estão demorando para ser respondidos, oportunidades estão se perdendo ou processos dependem demais de tarefas manuais, existe um grande potencial para utilização da solução.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Como funciona a implantação do IVE CRM? <span class="plus">+</span></button><div class="faq-a"><p>Primeiro, nossa equipe entende como funciona o atendimento, o processo comercial e as necessidades da sua empresa. A partir disso, estruturamos o CRM, os usuários, departamentos, funis, automações, integrações e, quando contratado, o comportamento da Inteligência Artificial. Depois da configuração, sua equipe recebe orientação para utilizar a plataforma. O prazo de implantação pode variar conforme a complexidade das automações e integrações necessárias para cada projeto.</p></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <img src="../logos-ive/logo-ive-limao.png" alt="IVE" height="28" style="height:28px;width:auto;flex:none;">
+      <span class="foot-sep"></span>
+      <a href="#produto">Como funciona</a>
+      <a href="#integracoes">Integrações</a>
+      <a href="#planos">Planos</a>
+      <a href="#diferencial">Como implantamos</a>
+      <a href="#faq">Dúvidas frequentes</a>
+      <a href="#qualificacao">Falar com especialista</a>
+      <a href="#qualificacao">Agendar diagnóstico</a>
+    </div>
+    <div class="foot-bottom"><span>© 2026 IVE — Inteligência em Vendas.</span><span>CRM · Automação · IA · Inteligência em Vendas</span></div>
+  </div>
+</footer>
+
+<div class="floating-cta"><a href="#qualificacao" class="btn btn-primary">Falar com especialista</a></div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <figure class="lightbox-figure">
+    <img id="lbImg" src="" alt="">
+    <figcaption class="lightbox-figcaption" id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Próxima">›</button>
+</div>
+
+<script>
+// Mouse Glow
+var glow=document.getElementById('mouseGlow');
+document.addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+
+// Floating Particles
+(function(){var c=document.getElementById('particles');if(!c)return;for(var i=0;i<20;i++){var p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.width=p.style.height=(Math.random()*3+1)+'px';p.style.animationDuration=(Math.random()*10+8)+'s';p.style.animationDelay=(Math.random()*10)+'s';p.style.opacity=0;c.appendChild(p);}})();
+
+// Header scroll enhancement
+window.addEventListener('scroll',function(){var h=document.querySelector('header');if(window.scrollY>100){h.classList.add('scrolled');}else{h.classList.remove('scrolled');}});
+
+// Mobile Menu
+function toggleMobileMenu(){var m=document.getElementById('mobileMenu'),t=document.querySelector('.nav-toggle'),o=m.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';document.body.style.overflow=o?'hidden':'';}
+function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.querySelector('.nav-toggle').textContent='☰';document.body.style.overflow='';}
+
+// FAQ
+document.querySelectorAll('.faq-item').forEach(function(i){i.querySelector('.faq-q').addEventListener('click',function(){var w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(x){x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight='';x.querySelector('.faq-q').setAttribute('aria-expanded','false');});if(!w){i.classList.add('open');var a=i.querySelector('.faq-a');a.style.maxHeight=a.scrollHeight+'px';i.querySelector('.faq-q').setAttribute('aria-expanded','true');}});});
+
+// Scroll Reveal
+var revObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.style.transitionDelay=(e.target.dataset.delay||'0')+'ms';e.target.classList.add('in');}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.pain-card,.pillar,.audience-item,.plan,.blur-reveal').forEach(function(el,i){if(el.classList.contains('pain-card'))el.dataset.delay=i*80;revObs.observe(el);});
+
+// Back to Top
+window.addEventListener('scroll',function(){document.getElementById('backToTop').classList.toggle('visible',window.scrollY>600);});
+
+// Header
+window.addEventListener('scroll',function(){document.querySelector('header').style.background=window.scrollY>50?'#111D15':'#111D15';});
+
+// Typing Effect
+var fullTitle='CRM inteligente para Vendas e Atendimento';var ti=0;var tw=document.getElementById('typewriter');
+function typeTitle(){tw.textContent=fullTitle.substring(0,ti+1);ti++;if(ti<fullTitle.length)setTimeout(typeTitle,50);}
+typeTitle();
+
+// Counters
+var counterObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target,t=parseInt(el.dataset.target),pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',d=0,step=Math.ceil(t/60);var iv=setInterval(function(){d+=step;if(d>=t){d=t;clearInterval(iv);}el.textContent=pre+d+suf;},20);counterObs.unobserve(el);}});},{threshold:.5});
+document.querySelectorAll('.counter').forEach(function(c){counterObs.observe(c);});
+
+// Phone Mask
+document.querySelectorAll('[data-mask="phone"]').forEach(function(i){i.addEventListener('input',function(e){var v=e.target.value.replace(/\D/g,'').substring(0,11);if(v.length>6)e.target.value='('+v.substring(0,2)+') '+v.substring(2,7)+'-'+v.substring(7);else if(v.length>2)e.target.value='('+v.substring(0,2)+') '+v.substring(2);else if(v.length>0)e.target.value='('+v;});});
+
+// Char Counter
+var obs=document.getElementById('obs-count');if(obs){document.querySelector('[maxlength="200"]').addEventListener('input',function(){obs.textContent=this.value.length;});}
+
+// Conditional
+document.getElementById('ja-usa').addEventListener('change',function(){document.getElementById('cond-plataforma').style.display=this.value==='sim'?'block':'none';});
+
+// Form Validation
+function validateField(i){var t=i.dataset.validate,v=i.value.trim(),err=document.getElementById(i.id+'-error'),ok=true;switch(t){case'name':ok=v.length>=2;break;case'phone':ok=v.replace(/\D/g,'').length>=10;break;case'email':ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);break;case'required':ok=v.length>0;break;case'select':ok=v!=='';}i.classList.toggle('error',!ok&&v.length>0);i.classList.toggle('success',ok&&v.length>0);if(err)err.classList.toggle('visible',!ok&&v.length>0);return ok;}
+document.querySelectorAll('[data-validate]').forEach(function(i){i.addEventListener('blur',function(){validateField(this);});i.addEventListener('input',function(){if(this.classList.contains('error'))validateField(this);});});
+
+// Multi-Step
+var cur=1,tot=3;
+function updateProg(){for(var i=1;i<=tot;i++){var s=document.getElementById('prog'+i),l=document.getElementById('progLabel'+i);s.classList.remove('active','done');l.classList.remove('active','done');if(i<cur){s.classList.add('done');l.classList.add('done');}else if(i===cur){s.classList.add('active');l.classList.add('active');}}}
+function showStep(s,noFocus){document.querySelectorAll('.form-step').forEach(function(x){x.classList.remove('active');});document.getElementById('step'+s).classList.add('active');document.getElementById('btnBack').style.display=s>1?'':'none';document.getElementById('btnNext').style.display=s<tot?'':'none';document.getElementById('btnSubmit').style.display=s===tot?'':'none';updateProg();if(noFocus)return;var f=document.querySelector('#step'+s+' input, #step'+s+' select');if(f)setTimeout(function(){f.focus();},100);}
+function validateStep(s){var el=document.getElementById('step'+s),inputs=el.querySelectorAll('[data-validate]'),ok=true;inputs.forEach(function(i){if(!validateField(i))ok=false;});return ok;}
+var WEBHOOK_URL='https://ive-n8n.tnl6ji.easypanel.host/webhook/recebe-leads-site';
+var acumulados={};
+var stepsConcluidos=[];
+var concluido=false;
+var _formDone=false;
+
+function coletaCampos(){
+  var form=document.getElementById('qualifyForm');
+  var v=function(sel){var el=form.querySelector(sel);return el?el.value.trim():'';};
+  return {
+    nome:v('input[data-validate="name"]')||acumulados.nome||'',
+    whatsapp:v('input[data-mask="phone"]')||acumulados.whatsapp||'',
+    email:v('#email')||acumulados.email||'',
+    segmento:v('#step2 input[type="text"]')||acumulados.segmento||'',
+    usa_crm:v('#ja-usa')||acumulados.usa_crm||'',
+    plataforma:v('#cond-plataforma input')||acumulados.plataforma||'',
+    quantas_pessoas:v('#step2 select[data-validate="select"]')||acumulados.quantas_pessoas||'',
+    automatizar:v('#step3 select[data-validate="select"]')||acumulados.automatizar||'',
+    observacao:v('input[maxlength="200"]')||acumulados.observacao||''
+  };
+}
+
+function salvaPasso(s){
+  var d=coletaCampos();
+  if(s===1){acumulados.nome=d.nome;acumulados.whatsapp=d.whatsapp;acumulados.email=d.email;}
+  if(s===2){acumulados.segmento=d.segmento;acumulados.usa_crm=d.usa_crm;acumulados.plataforma=d.plataforma;acumulados.quantas_pessoas=d.quantas_pessoas;}
+  if(s===3){acumulados.automatizar=d.automatizar;acumulados.observacao=d.observacao;}
+  if(stepsConcluidos.indexOf('step'+s)<0)stepsConcluidos.push('step'+s);
+}
+
+function montaPayload(status){
+  var d=coletaCampos();
+  var p={};
+  p.nome=d.nome;p.whatsapp=d.whatsapp;p.email=d.email;
+  p.segmento=d.segmento;p.usa_crm=d.usa_crm;p.plataforma=d.plataforma;
+  p.quantas_pessoas=d.quantas_pessoas;p.automatizar=d.automatizar;p.observacao=d.observacao;
+  p.steps_concluidos=stepsConcluidos.slice();
+  p.status=status;
+  try{p.timestamp=new Date().toISOString();}catch(e){p.timestamp='';}
+  return p;
+}
+
+function enviaWebhook(payload,viaBeacon){
+  if(viaBeacon&&navigator.sendBeacon){
+    var blob=new Blob([JSON.stringify(payload)],{type:'application/json'});
+    return navigator.sendBeacon(WEBHOOK_URL,blob);
+  }
+  try{fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});}catch(e){}
+  return true;
+}
+
+function nextStep(){if(cur>=tot){return;}if(!validateStep(cur))return;salvaPasso(cur);enviaWebhook(montaPayload('step'+cur),false);cur++;showStep(cur);}
+
+function prevStep(){if(cur>1){cur--;showStep(cur);}}
+
+function handleFormSubmit(e){e.preventDefault();if(!validateStep(cur))return;salvaPasso(cur);concluido=true;
+  var b=document.getElementById('btnSubmit');b.classList.add('loading');b.disabled=true;
+  var lead=montaPayload('step3');
+  var redirectURL='https://wa.me/553193628477?text='+encodeURIComponent('Olá! Sou '+lead.nome+' e acabei de preencher o formulário no site da IVE. WhatsApp: '+lead.whatsapp+'. E-mail: '+lead.email+'.');
+  function finish(){if(_formDone)return;_formDone=true;b.classList.remove('loading');b.disabled=false;document.querySelectorAll('.form-step').forEach(function(s){s.classList.remove('active');});document.getElementById('formNav').style.display='none';document.querySelector('.form-progress').style.display='none';document.getElementById('formSuccess').classList.add('visible');try{window.open(redirectURL,'_blank');}catch(ex){}window.location.href=redirectURL;}
+  enviaWebhook(lead,false);
+  try{finish();}catch(ex){}
+}
+
+function capturaAbandono(){if(concluido)return;var d=coletaCampos();var temAlgo=d.nome||d.whatsapp||d.email||d.segmento||d.usa_crm||d.plataforma||d.quantas_pessoas||d.automatizar||d.observacao;if(!temAlgo&&stepsConcluidos.length===0)return;var p=montaPayload('abandonou');enviaWebhook(p,true);}
+if(window.addEventListener){window.addEventListener('pagehide',capturaAbandono);window.addEventListener('beforeunload',capturaAbandono);}
+
+// Plan Animations
+var planObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var d=parseInt(e.target.dataset.delay)||0;setTimeout(function(){e.target.classList.add('in');},d);planObs.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.plan').forEach(function(p){planObs.observe(p);});
+
+showStep(1,true);
+window.scrollTo(0,0);
+
+// Carousel — capas rotativas (fade)
+(function(){
+  var wrap=document.getElementById('carousel');
+  if(!wrap)return;
+  var track=wrap.querySelector('.carousel-track');
+  var dotsWrap=document.getElementById('carouselDots');
+  // Lista de capas. Adicione novas aqui quando colocar mais imagens na pasta capa-site/
+  var CAPAS=['capa-1.png'];
+  var slides=[];
+  var current=0;
+  var timer=null;
+
+  function addSlide(src,alt){
+    var img=document.createElement('img');
+    img.className='carousel-slide'+(slides.length===0?' active':'');
+    img.src=src;
+    img.alt=alt||'Visão do IVE CRM';
+    track.appendChild(img);
+    slides.push(img);
+    return img;
+  }
+
+  function buildDots(){
+    if(!dotsWrap)return;
+    dotsWrap.innerHTML='';
+    slides.forEach(function(s,i){
+      var d=document.createElement('span');
+      if(i===current)d.className='active';
+      (function(idx){d.addEventListener('click',function(){goTo(idx);restart();});})(i);
+      dotsWrap.appendChild(d);
+    });
+  }
+
+  function goTo(i){
+    if(i<0||i>=slides.length)return;
+    slides[current].classList.remove('active');
+    current=i;
+    slides[current].classList.add('active');
+    var ds=dotsWrap?dotsWrap.children:[];
+    for(var d=0;d<ds.length;d++){ds[d].className=(d===current)?'active':'';}
+  }
+
+  function next(){goTo((current+1)%slides.length);}
+  function play(){if(slides.length>1&&!timer){timer=setInterval(next,5000);}}
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function restart(){stop();play();}
+
+  // Monta os slides apenas para as capas que realmente existem
+  slides=[];document.querySelectorAll('#carousel .carousel-slide').forEach(function(s){s.parentNode.removeChild(s);});
+  var pending=CAPAS.slice();
+  (function load(){
+    if(!pending.length){buildDots();if(slides.length>1)play();return;}
+    var name=pending.shift();
+    var im=new Image();
+    im.onload=function(){addSlide('../capa-site/'+name);load();};
+    im.onerror=function(){load();};
+    im.src='../capa-site/'+name;
+  })();
+
+  wrap.addEventListener('mouseenter',stop);
+  wrap.addEventListener('mouseleave',restart);
+})();
+
+// Lightbox — ampliar imagens dos pilares
+(function(){
+  var box=document.getElementById('lightbox');
+  if(!box)return;
+  var img=document.getElementById('lbImg');
+  var cap=document.getElementById('lbCaption');
+  var shots=Array.prototype.slice.call(document.querySelectorAll('.pillar-shot[data-lightbox]'));
+  if(!shots.length)return;
+  var current=0,lastFocused=null;
+  var captions=shots.map(function(s){var t=s.querySelector('.tag');return t?t.textContent:'Pilar IVE CRM';});
+
+  function buildHref(src){return src.replace(/^https?:/,'');}
+
+  function show(i){
+    current=(i+shots.length)%shots.length;
+    var s=shots[current];
+    var href=s.getAttribute('href');
+    img.src=buildHref(href);
+    img.alt=s.getAttribute('alt')||'Imagem IVE CRM';
+    cap.textContent=captions[current];
+  }
+  window.openLightbox=function(i){
+    current=parseInt(i,10)||0;
+    lastFocused=document.activeElement;
+    show(current);
+    box.classList.add('open');
+    document.body.style.overflow='hidden';
+    document.getElementById('lbClose').focus();
+  };
+  window.closeLightbox=function(){
+    if(!box.classList.contains('open'))return;
+    box.classList.remove('open');
+    document.body.style.overflow='';
+    if(lastFocused)lastFocused.focus();
+  };
+  window.lbNext=function(){show(current+1);};
+  window.lbPrev=function(){show(current-1);};
+
+  shots.forEach(function(s){s.addEventListener('click',function(e){
+    e.preventDefault();
+    var idx=s.getAttribute('data-lightbox');
+    window.openLightbox(idx);
+  });});
+  document.getElementById('lbClose').addEventListener('click',closeLightbox);
+  document.getElementById('lbNext').addEventListener('click',lbNext);
+  document.getElementById('lbPrev').addEventListener('click',lbPrev);
+  box.addEventListener('click',function(e){if(e.target===box)closeLightbox();});
+  document.addEventListener('keydown',function(e){
+    if(!box.classList.contains('open'))return;
+    if(e.key==='Escape')closeLightbox();
+    else if(e.key==='ArrowRight')lbNext();
+    else if(e.key==='ArrowLeft')lbPrev();
+  });
+})();
+</script>
+<script
+  type="application/javascript"
+  src="https://cdn.wts.chat/scripts/widget/v2/h-widget-min.js"
+  data-companyid="067dd376-7c33-4487-be4e-f80371048c9b"
+  data-widgetid="b91cc0d9-b94a-4fcc-aa2a-6a43f710d207">
+</script>
+</body>
+</html>
