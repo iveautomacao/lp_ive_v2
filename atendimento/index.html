@@ -518,6 +518,14 @@ header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3
 .qualify-dark .journey-ico{background:rgba(255,255,255,.06);border-color:var(--line-dark);box-shadow:none;}
 .qualify-dark .journey-note{background:var(--teal);border:0;color:var(--ink);font-weight:600;box-shadow:0 16px 40px -14px rgba(47,187,174,.45);}
 .qualify-dark .journey-note::before{display:none;}
+.trust-strip{position:relative;z-index:2;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border:0;overflow:hidden;background:linear-gradient(135deg,var(--amber),var(--amber-deep),var(--amber));background-size:200% 100%;animation:ctaGradient 4s ease infinite;}
+.trust-strip::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23000' opacity='.06'/%3E%3C/svg%3E");pointer-events:none;}
+.trust-strip .trust-inner{position:relative;z-index:1;}
+.trust-strip .trust-txt{color:#1A0F02;font-weight:600;}
+.trust-strip .soc-badge{background:rgba(17,29,21,.08);border-color:rgba(17,29,21,.2);}
+.trust-strip .soc-logo{color:var(--ink);}
+.trust-strip .soc-badge:hover{background:var(--ink);border-color:var(--ink);}
+.trust-strip .soc-badge:hover .soc-logo{color:#fff;}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
