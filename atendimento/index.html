@@ -511,6 +511,9 @@ header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3
 /* Perspective tilt on proof cards */
 .perspective-card{transform:perspective(900px) rotateX(2deg);transition:transform .5s cubic-bezier(.4,0,.2,1);}
 .perspective-card:hover{transform:perspective(900px) rotateX(0deg) translateY(-4px);}
+.hero-note{margin-top:16px;font-size:.88rem;color:#8A92A8;}
+.hero-price{margin-top:22px;font-size:.95rem;color:#CBD1DF;}
+.hero-price strong{color:var(--amber);font-weight:700;}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
@@ -585,18 +588,20 @@ src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
-        <div class="eyebrow">IVE - INTELIGÊNCIA EM VENDAS</div>
+        <div class="eyebrow">IVE ATENDIMENTO · AGENTE DE IA</div>
         <h1><span class="gradient-text" id="typewriter"></span><span class="typing-cursor"></span></h1>
         <ul class="hero-sub hero-list">
-          <li><span class="list-dot"></span><span><strong>Atendimentos <em>automáticos</em> e centralizados</strong></span></li>
-          <li><span class="list-dot"></span><span><strong>Agentes de IA</strong> + automatização de tarefas</span></li>
-          <li><span class="list-dot"></span><span><strong>Organização do processo comercial</strong></span></li>
-          <li><span class="list-dot"></span><span><strong>Implantação <em>personalizada</em></strong> para sua empresa</span></li>
+          <li><span class="list-dot"></span><span><strong>Responde <em>na hora</em>, a qualquer hora do dia</strong></span></li>
+          <li><span class="list-dot"></span><span><strong><em>Treinada</em> com as informações da sua empresa</strong></span></li>
+          <li><span class="list-dot"></span><span><strong>Qualifica e passa para a <em>pessoa certa</em></strong></span></li>
+          <li><span class="list-dot"></span><span><strong><em>Vários atendentes</em> em um só número</strong></span></li>
         </ul>
+        <p class="hero-price">Planos a partir de <strong>R$ 489/mês</strong></p>
         <div class="hero-ctas">
-          <a href="#qualificacao" class="btn btn-primary btn-pulse btn-shine">Quero uma solução para minha empresa</a>
+          <a href="#qualificacao" class="btn btn-primary btn-pulse btn-shine">Quero um agente de IA</a>
           <a href="#produto" class="btn btn-ghost">Ver como funciona ↓</a>
         </div>
+        <p class="hero-note">Nós implantamos e treinamos a IA para você.</p>
 
       </div>
       <div class="hero-visual">
@@ -886,7 +891,7 @@ window.addEventListener('scroll',function(){document.getElementById('backToTop')
 window.addEventListener('scroll',function(){document.querySelector('header').style.background=window.scrollY>50?'#111D15':'#111D15';});
 
 // Typing Effect
-var fullTitle='CRM inteligente para Vendas e Atendimento';var ti=0;var tw=document.getElementById('typewriter');
+var fullTitle='Agente de IA que atende seu WhatsApp 24h';var ti=0;var tw=document.getElementById('typewriter');
 function typeTitle(){tw.textContent=fullTitle.substring(0,ti+1);ti++;if(ti<fullTitle.length)setTimeout(typeTitle,50);}
 typeTitle();
 

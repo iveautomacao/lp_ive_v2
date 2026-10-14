@@ -511,6 +511,9 @@ header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3
 /* Perspective tilt on proof cards */
 .perspective-card{transform:perspective(900px) rotateX(2deg);transition:transform .5s cubic-bezier(.4,0,.2,1);}
 .perspective-card:hover{transform:perspective(900px) rotateX(0deg) translateY(-4px);}
+.hero-note{margin-top:16px;font-size:.88rem;color:#8A92A8;}
+.hero-price{margin-top:22px;font-size:.95rem;color:#CBD1DF;}
+.hero-price strong{color:var(--amber);font-weight:700;}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
@@ -585,18 +588,19 @@ src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
-        <div class="eyebrow">IVE - INTELIGÊNCIA EM VENDAS</div>
+        <div class="eyebrow">IVE COMERCIAL · VENDEDOR COM IA</div>
         <h1><span class="gradient-text" id="typewriter"></span><span class="typing-cursor"></span></h1>
         <ul class="hero-sub hero-list">
-          <li><span class="list-dot"></span><span><strong>Atendimentos <em>automáticos</em> e centralizados</strong></span></li>
-          <li><span class="list-dot"></span><span><strong>Agentes de IA</strong> + automatização de tarefas</span></li>
-          <li><span class="list-dot"></span><span><strong>Organização do processo comercial</strong></span></li>
-          <li><span class="list-dot"></span><span><strong>Implantação <em>personalizada</em></strong> para sua empresa</span></li>
+          <li><span class="list-dot"></span><span><strong>Recomenda o <em>produto certo</em> para cada cliente</strong></span></li>
+          <li><span class="list-dot"></span><span><strong>Envia <em>fotos, vídeos e links</em> na hora</strong></span></li>
+          <li><span class="list-dot"></span><span><strong><em>Calcula orçamentos</em> com os seus preços reais</strong></span></li>
+          <li><span class="list-dot"></span><span><strong>Faz follow-up e entrega o cliente <em>pronto para fechar</em></strong></span></li>
         </ul>
         <div class="hero-ctas">
-          <a href="#qualificacao" class="btn btn-primary btn-pulse btn-shine">Quero uma solução para minha empresa</a>
+          <a href="#qualificacao" class="btn btn-primary btn-pulse btn-shine">Quero um vendedor com IA</a>
           <a href="#produto" class="btn btn-ghost">Ver como funciona ↓</a>
         </div>
+        <p class="hero-note">Nós implantamos e treinamos a IA para você.</p>
 
       </div>
       <div class="hero-visual">
@@ -611,7 +615,7 @@ src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
             </div>
           </div>
         </div>
-        <div class="hero-badge">Lead chega → IA responde → CRM registra, ao vivo</div>
+        <div class="hero-badge">Cliente pergunta → IA apresenta e orça → vendedor fecha</div>
       </div>
     </div>
     <div class="trust-strip">
@@ -886,7 +890,7 @@ window.addEventListener('scroll',function(){document.getElementById('backToTop')
 window.addEventListener('scroll',function(){document.querySelector('header').style.background=window.scrollY>50?'#111D15':'#111D15';});
 
 // Typing Effect
-var fullTitle='CRM inteligente para Vendas e Atendimento';var ti=0;var tw=document.getElementById('typewriter');
+var fullTitle='Vendedor com IA no seu WhatsApp, 24h';var ti=0;var tw=document.getElementById('typewriter');
 function typeTitle(){tw.textContent=fullTitle.substring(0,ti+1);ti++;if(ti<fullTitle.length)setTimeout(typeTitle,50);}
 typeTitle();
 
