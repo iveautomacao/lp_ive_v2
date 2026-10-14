@@ -511,6 +511,12 @@ header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3
 /* Perspective tilt on proof cards */
 .perspective-card{transform:perspective(900px) rotateX(2deg);transition:transform .5s cubic-bezier(.4,0,.2,1);}
 .perspective-card:hover{transform:perspective(900px) rotateX(0deg) translateY(-4px);}
+.qualify.qualify-dark{background:radial-gradient(circle at 15% 10%,rgba(47,187,174,.10),transparent 45%),radial-gradient(circle at 85% 90%,rgba(231,163,62,.08),transparent 45%),var(--ink);}
+.qualify-dark .qualify-grid>div>h2{color:var(--paper);}
+.qualify-dark .form-card.glass{background:#fff;border-color:transparent;box-shadow:0 30px 80px -30px rgba(0,0,0,.65);}
+.qualify-dark .journey-step p{color:#CBD1DF;}
+.qualify-dark .journey-ico{background:rgba(255,255,255,.06);border-color:var(--line-dark);box-shadow:none;}
+.qualify-dark .journey-note{background:linear-gradient(135deg,rgba(47,187,174,.16),rgba(231,163,62,.10));border:1px solid var(--line-dark);}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
@@ -625,6 +631,57 @@ src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
           <div class="soc-badge" data-color="#E4405F" title="Instagram"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="Instagram"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
           <div class="soc-badge" data-color="#0084FF" title="Facebook Messenger"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="Facebook Messenger"><path d="M12 0C5.24 0 0 4.952 0 11.64c0 3.499 1.434 6.522 3.769 8.61a.96.96 0 01.323.684l.065 2.135a.96.96 0 001.348.849l2.381-1.05a.958.958 0 01.641-.047c1.09.3 2.256.459 3.473.459 6.76 0 12-4.952 12-11.64S18.76 0 12 0zm7.48 8.88l-3.786 6.024a1.92 1.92 0 01-2.763.541l-2.977-2.228a.48.48 0 00-.579 0L6.8 15.728a.96.96 0 01-1.386-1.248l3.786-6.024a1.92 1.92 0 012.763-.541l2.977 2.228a.48.48 0 00.579 0l2.87-2.149a.96.96 0 011.09 0 .96.96 0 011.386 1.248-.96.96 0 01-.39.318z"/></svg></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="qualify qualify-dark" id="qualificacao">
+  <div class="wrap">
+    <div class="qualify-grid">
+      <div class="reveal">
+        <h2 style="margin-bottom:24px;">Fale sobre a sua operação</h2>
+        <div class="form-card glass">
+          <div class="form-progress"><div class="form-progress-bar"><div class="form-progress-step active" id="prog1"></div><div class="form-progress-step" id="prog2"></div><div class="form-progress-step" id="prog3"></div></div><div class="form-progress-label"><span class="active" id="progLabel1">Seus dados</span><span id="progLabel2">Sua operação</span><span id="progLabel3">Necessidades</span></div></div>
+          <form id="qualifyForm" onsubmit="handleFormSubmit(event)" novalidate>
+            <div class="form-step active" id="step1">
+              <div class="step-title">Vamos começar pelos seus dados</div>
+              <div class="field-row">
+                <div class="field"><label>Nome <span class="required">*</span></label><input type="text" placeholder="Seu nome" required data-validate="name"><div class="field-error">Informe seu nome</div></div>
+                <div class="field"><label>WhatsApp <span class="required">*</span></label><input type="tel" placeholder="(00) 00000-0000" required data-mask="phone" data-validate="phone"><div class="field-error">WhatsApp inválido</div></div>
+              </div>
+              <div class="field"><label>E-mail <span class="required">*</span></label><input type="email" id="email" placeholder="voce@empresa.com.br" required data-validate="email"><div class="field-error">E-mail inválido</div></div>
+            </div>
+            <div class="form-step" id="step2">
+              <div class="step-title">Sobre a operação</div>
+              <div class="step-subtitle">Para entendermos o contexto.</div>
+              <div class="field"><label>Segmento de Atuação <span class="required">*</span></label><input type="text" placeholder="Ex: clínica, imobiliária, e-commerce…" required data-validate="required"><div class="field-error">Informe o segmento</div></div>
+              <div class="field"><label>Já utiliza CRM?</label><select id="ja-usa"><option value="">Selecione</option><option value="nao">Não</option><option value="sim">Sim</option></select></div>
+              <div class="field-conditional" id="cond-plataforma" style="display:none;"><div class="field"><label>Qual plataforma?</label><input type="text" placeholder="Nome da ferramenta"></div></div>
+              <div class="field"><label>Quantas pessoas? <span class="required">*</span></label><select required data-validate="select"><option value="">Selecione</option><option>Somente eu</option><option>Até 3</option><option>4 a 5</option><option>6 a 10</option><option>11 a 20</option><option>Mais de 20</option></select><div class="field-error">Selecione</div></div>
+            </div>
+            <div class="form-step" id="step3">
+              <div class="step-title">O que você precisa?</div>
+              <div class="step-subtitle">Para direcionarmos ao especialista certo.</div>
+              <div class="field"><label>O que pretende automatizar? <span class="required">*</span></label><select required data-validate="select"><option value="">Selecione</option><option selected>Atendimento e qualificação</option><option>Processo comercial e orçamentos</option><option>Agendamentos</option><option>Integrações personalizadas</option><option>Ainda não sei</option></select><div class="field-error">Selecione</div></div>
+              <div class="field"><label>Observação <span class="hint">Opcional</span></label><input type="text" placeholder="Ex: preciso integrar com ERP…" maxlength="200"><div class="char-count"><span id="obs-count">0</span>/200</div></div>
+            </div>
+            <div class="form-success" id="formSuccess"><div class="form-success-icon">✓</div><h3>Recebemos suas informações!</h3><p>Um especialista vai entrar em contato pelo WhatsApp em breve.</p></div>
+            <div class="form-nav" id="formNav"><button type="button" class="btn btn-back" id="btnBack" onclick="prevStep()" style="display:none;">← Voltar</button><button type="button" class="btn btn-primary" id="btnNext" onclick="nextStep()">Continuar →</button><button type="submit" class="btn btn-primary btn-block" id="btnSubmit" style="display:none;"><span class="btn-text">Enviar e falar com especialista</span><span class="spinner"></span></button></div>
+            <p class="form-foot">Resposta em minutos. Sem compromisso.</p>
+          </form>
+        </div>
+      </div>
+      <div class="reveal">
+        <h2 style="margin-bottom:24px;font-size:1.8rem;">O que acontece agora?</h2>
+        <div class="journey">
+          <div class="journey-step"><div class="journey-ico">01</div><p>Seu contato entra automaticamente no IVE CRM, com seus dados organizados.</p></div>
+          <div class="journey-step"><div class="journey-ico">02</div><p>A IVE IA inicia o atendimento pelo WhatsApp, entende sua necessidade e responde suas primeiras dúvidas.</p></div>
+          <div class="journey-step"><div class="journey-ico">03</div><p>A IA identifica o seu cenário e conduz a conversa e encontra o melhor horário para uma reunião.</p></div>
+          <div class="journey-step"><div class="journey-ico">04</div><p>A reunião é agendada e nosso especialista recebe você com todo o histórico do atendimento já organizado.</p></div>
+        </div>
+        <div class="journey-note">Você não preenche um formulário para esperar um retorno. Você inicia, na prática, uma experiência com o IVE CRM.</div>
       </div>
     </div>
   </div>
@@ -752,56 +809,6 @@ src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- FORM -->
-<section class="qualify" id="qualificacao">
-  <div class="wrap">
-    <div class="qualify-grid">
-      <div class="reveal">
-        <h2 style="margin-bottom:24px;">Fale sobre a sua operação</h2>
-        <div class="form-card glass">
-          <div class="form-progress"><div class="form-progress-bar"><div class="form-progress-step active" id="prog1"></div><div class="form-progress-step" id="prog2"></div><div class="form-progress-step" id="prog3"></div></div><div class="form-progress-label"><span class="active" id="progLabel1">Seus dados</span><span id="progLabel2">Sua operação</span><span id="progLabel3">Necessidades</span></div></div>
-          <form id="qualifyForm" onsubmit="handleFormSubmit(event)" novalidate>
-            <div class="form-step active" id="step1">
-              <div class="step-title">Vamos começar pelos seus dados</div>
-              <div class="field-row">
-                <div class="field"><label>Nome <span class="required">*</span></label><input type="text" placeholder="Seu nome" required data-validate="name"><div class="field-error">Informe seu nome</div></div>
-                <div class="field"><label>WhatsApp <span class="required">*</span></label><input type="tel" placeholder="(00) 00000-0000" required data-mask="phone" data-validate="phone"><div class="field-error">WhatsApp inválido</div></div>
-              </div>
-              <div class="field"><label>E-mail <span class="required">*</span></label><input type="email" id="email" placeholder="voce@empresa.com.br" required data-validate="email"><div class="field-error">E-mail inválido</div></div>
-            </div>
-            <div class="form-step" id="step2">
-              <div class="step-title">Sobre a operação</div>
-              <div class="step-subtitle">Para entendermos o contexto.</div>
-              <div class="field"><label>Segmento de Atuação <span class="required">*</span></label><input type="text" placeholder="Ex: clínica, imobiliária, e-commerce…" required data-validate="required"><div class="field-error">Informe o segmento</div></div>
-              <div class="field"><label>Já utiliza CRM?</label><select id="ja-usa"><option value="">Selecione</option><option value="nao">Não</option><option value="sim">Sim</option></select></div>
-              <div class="field-conditional" id="cond-plataforma" style="display:none;"><div class="field"><label>Qual plataforma?</label><input type="text" placeholder="Nome da ferramenta"></div></div>
-              <div class="field"><label>Quantas pessoas? <span class="required">*</span></label><select required data-validate="select"><option value="">Selecione</option><option>Somente eu</option><option>Até 3</option><option>4 a 5</option><option>6 a 10</option><option>11 a 20</option><option>Mais de 20</option></select><div class="field-error">Selecione</div></div>
-            </div>
-            <div class="form-step" id="step3">
-              <div class="step-title">O que você precisa?</div>
-              <div class="step-subtitle">Para direcionarmos ao especialista certo.</div>
-              <div class="field"><label>O que pretende automatizar? <span class="required">*</span></label><select required data-validate="select"><option value="">Selecione</option><option selected>Atendimento e qualificação</option><option>Processo comercial e orçamentos</option><option>Agendamentos</option><option>Integrações personalizadas</option><option>Ainda não sei</option></select><div class="field-error">Selecione</div></div>
-              <div class="field"><label>Observação <span class="hint">Opcional</span></label><input type="text" placeholder="Ex: preciso integrar com ERP…" maxlength="200"><div class="char-count"><span id="obs-count">0</span>/200</div></div>
-            </div>
-            <div class="form-success" id="formSuccess"><div class="form-success-icon">✓</div><h3>Recebemos suas informações!</h3><p>Um especialista vai entrar em contato pelo WhatsApp em breve.</p></div>
-            <div class="form-nav" id="formNav"><button type="button" class="btn btn-back" id="btnBack" onclick="prevStep()" style="display:none;">← Voltar</button><button type="button" class="btn btn-primary" id="btnNext" onclick="nextStep()">Continuar →</button><button type="submit" class="btn btn-primary btn-block" id="btnSubmit" style="display:none;"><span class="btn-text">Enviar e falar com especialista</span><span class="spinner"></span></button></div>
-            <p class="form-foot">Resposta em minutos. Sem compromisso.</p>
-          </form>
-        </div>
-      </div>
-      <div class="reveal">
-        <h2 style="margin-bottom:24px;font-size:1.8rem;">O que acontece agora?</h2>
-        <div class="journey">
-          <div class="journey-step"><div class="journey-ico">01</div><p>Seu contato entra automaticamente no IVE CRM, com seus dados organizados.</p></div>
-          <div class="journey-step"><div class="journey-ico">02</div><p>A IVE IA inicia o atendimento pelo WhatsApp, entende sua necessidade e responde suas primeiras dúvidas.</p></div>
-          <div class="journey-step"><div class="journey-ico">03</div><p>A IA identifica o seu cenário e conduz a conversa e encontra o melhor horário para uma reunião.</p></div>
-          <div class="journey-step"><div class="journey-ico">04</div><p>A reunião é agendada e nosso especialista recebe você com todo o histórico do atendimento já organizado.</p></div>
-        </div>
-        <div class="journey-note">Você não preenche um formulário para esperar um retorno. Você inicia, na prática, uma experiência com o IVE CRM.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA STRIP -->
 <div class="cta-strip"><div class="wrap"><h3>Pronto para ver o processo da sua empresa rodando dentro do IVE CRM?</h3><a href="#qualificacao" class="btn btn-primary">Quero um agente de IA</a></div></div>
