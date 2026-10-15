@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<title>IVE × Mads | Condição exclusiva para clientes Mads</title>
+<meta name="description" content="Clientes da Mads Agência Digital têm 50% de desconto na implantação da IA da IVE: atendimento, vendas e agendamento no WhatsApp, 24 horas por dia.">
+<link rel="icon" type="image/png" href="../fav-icon/fav-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: capa escura com oferta e formulário lado a lado, faixa laranja do ecossistema, seções claras alternadas, fechamento escuro */
+:root{
+  --ink:#111D15; --ink-2:#18271D; --ink-3:#203327;
+  --paper:#FAF8F5; --paper-2:#F1EDE5; --line:rgba(17,29,21,.10); --line-dark:rgba(250,248,245,.10);
+  --amber:#E7A33E; --amber-deep:#C77F1E; --teal:#2FBBAE; --teal-deep:#1FA397; --lime:#00FF00;
+  --text:#1B2A20; --muted:#5A6458; --muted-dark:#B7C2B9;
+  --display:'Sora',-apple-system,'Segoe UI',sans-serif;
+  --body:'Inter',-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{font-family:var(--body);background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:24px}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 1rem var(--body);padding:16px 28px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.btn-amber{background:var(--amber);color:#1A0F02;box-shadow:0 14px 30px -14px rgba(231,163,62,.8)}
+.btn-amber:hover{background:var(--amber-deep)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+
+/* topo */
+.top{position:absolute;top:0;left:0;right:0;z-index:5;padding-block:22px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lockup{display:flex;align-items:center;gap:16px}
+.lockup .ive{height:30px;width:auto}
+.lockup .x{font-family:var(--display);color:var(--muted-dark);font-size:1.1rem;font-weight:500}
+.lockup .mads{height:30px;width:auto}
+.mads-fallback{font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:var(--paper)}
+.top-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(231,163,62,.4);padding:7px 12px;border-radius:999px}
+
+/* capa */
+.hero{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;padding:120px 0 90px}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(600px 400px at 85% 15%,rgba(47,187,174,.16),transparent 70%),
+  radial-gradient(500px 380px at 5% 95%,rgba(231,163,62,.10),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(250,248,245,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(250,248,245,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(180deg,#000 0%,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero-copy{min-width:0}
+.hero .kicker{color:var(--teal);display:flex;align-items:center;gap:10px}
+.hero .kicker::before{content:"";width:28px;height:2px;background:var(--teal)}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.6rem);font-weight:700;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero-sub{margin-top:20px;font-size:1.12rem;color:var(--muted-dark);max-width:56ch}
+.offer{margin-top:34px;display:flex;align-items:stretch;gap:0;border-radius:var(--r);overflow:hidden;border:1px solid rgba(231,163,62,.35);max-width:560px}
+.offer-num{background:var(--amber);color:#1A0F02;padding:18px 24px;display:flex;flex-direction:column;justify-content:center;min-width:150px}
+.offer-num b{font-family:var(--display);font-size:3.4rem;line-height:.9;font-weight:800;letter-spacing:-.04em}
+.offer-num span{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:6px}
+.offer-txt{background:rgba(231,163,62,.08);padding:18px 22px;display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0}
+.offer-txt strong{font-family:var(--display);font-size:1.08rem;color:var(--paper)}
+.offer-txt p{font-size:.92rem;color:var(--muted-dark)}
+
+.form-card{background:#fff;color:var(--text);border-radius:22px;padding:34px 30px 26px;box-shadow:0 40px 90px -40px rgba(0,0,0,.8);position:relative;min-width:0}
+.form-card::before{content:"";position:absolute;top:0;left:30px;right:30px;height:4px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--teal),var(--amber))}
+.form-card h2{font-size:1.45rem;font-weight:700}
+.form-card .lead{color:var(--muted);font-size:.95rem;margin-top:6px}
+.field{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.85rem;font-weight:600}
+.field input{font:500 1rem var(--body);padding:14px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--text);transition:border-color .2s ease,background .2s ease;width:100%}
+.field input:focus{border-color:var(--teal);background:#fff;outline:none}
+.field.err input{border-color:#E5484D;background:#FFF6F6}
+.field .msg{font-size:.78rem;color:#C9353A;display:none}
+.field.err .msg{display:block}
+.form-card .btn{width:100%;margin-top:22px}
+.form-foot{text-align:center;font-size:.8rem;color:var(--muted);margin-top:12px}
+.badge-mads{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:.78rem;font-weight:600;color:var(--teal-deep);background:rgba(47,187,174,.10);padding:6px 12px;border-radius:999px}
+.success{display:none;text-align:center;padding:24px 0 10px}
+.success .ok{width:58px;height:58px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:1.6rem;margin:0 auto 14px}
+.success h3{font-size:1.3rem}
+.success p{color:var(--muted);margin-top:6px;font-size:.95rem}
+.form-card.done form{display:none}
+.form-card.done .success{display:block}
+
+/* faixa ecossistema */
+.chain{background:var(--amber);color:#1A0F02;position:relative}
+.chain .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-block:34px}
+.link{display:flex;align-items:center;gap:16px;padding-inline:22px;position:relative;min-width:0}
+.link + .link{border-left:1.5px solid rgba(26,15,2,.18)}
+.link .n{flex:none;width:46px;height:46px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:.85rem}
+.link b{font-family:var(--display);font-size:1.08rem;display:block;line-height:1.2}
+.link span{font-size:.9rem;opacity:.85}
+
+/* seções */
+section.s{padding-block:96px}
+.s-head{max-width:760px}
+.s-head .kicker{color:var(--amber-deep)}
+.s-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;margin-top:14px}
+.s-head p{margin-top:14px;color:var(--muted);font-size:1.05rem}
+
+.pains{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pain{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;min-width:0}
+.pain .ico{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--amber-deep);background:rgba(231,163,62,.14);display:inline-block;padding:5px 10px;border-radius:8px}
+.pain h3{font-size:1.18rem;margin-top:16px}
+.pain p{margin-top:8px;color:var(--muted);font-size:.96rem}
+
+.eco{background:var(--paper-2)}
+.eco-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:stretch}
+.eco-card{border-radius:22px;padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.eco-card .who{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.eco-card h3{font-size:1.35rem}
+.eco-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.eco-card li{display:flex;gap:10px;font-size:.96rem}
+.eco-card li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;margin-top:9px;background:currentColor;opacity:.6}
+.eco-mads{background:#fff;border:1px solid var(--line)}
+.eco-mads .who{color:var(--muted)}
+.eco-ive{background:var(--ink);color:var(--paper);box-shadow:0 30px 60px -30px rgba(17,29,21,.6)}
+.eco-ive .who{color:var(--teal)}
+.eco-ive li{color:var(--muted-dark)}
+.eco-you{background:var(--teal);color:var(--ink)}
+.eco-you .who{color:var(--ink);opacity:.75}
+.eco-note{margin-top:28px;display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px dashed rgba(17,29,21,.25);border-radius:var(--r);padding:22px 24px}
+.eco-note b{font-family:var(--display)}
+.eco-note p{color:var(--muted);font-size:.96rem}
+.eco-note .tag{flex:none;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--amber);padding:6px 10px;border-radius:8px;margin-top:2px}
+
+.plans{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 28px;display:flex;flex-direction:column;min-width:0;position:relative}
+.plan .off{position:absolute;top:-13px;right:22px;background:var(--amber);color:#1A0F02;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.plan .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--paper-2);font-size:1.3rem}
+.plan h3{font-size:1.3rem;margin-top:18px}
+.plan .fn{color:var(--muted);font-size:.94rem;margin-top:6px}
+.plan ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.plan li{display:flex;gap:10px;font-size:.94rem}
+.plan li::before{content:"✓";flex:none;width:20px;height:20px;border-radius:6px;background:rgba(47,187,174,.14);color:var(--teal-deep);font-size:.72rem;font-weight:700;display:grid;place-items:center;margin-top:2px}
+.plan .btn{margin-top:24px;width:100%;padding:14px 20px;font-size:.95rem}
+.plan-alt{margin-top:20px;display:grid;grid-template-columns:1fr 1.2fr;gap:20px}
+.custom{background:var(--ink);color:var(--paper);border-radius:22px;padding:30px;display:flex;flex-direction:column;gap:10px}
+.custom .who{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:600}
+.custom h3{font-size:1.3rem}
+.custom p{color:var(--muted-dark);font-size:.95rem}
+.custom a{color:var(--amber);font-weight:600;text-decoration:none;margin-top:6px}
+.included{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px}
+.included h3{font-size:1.1rem}
+.included ul{list-style:none;margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}
+.included li{font-size:.92rem;color:var(--muted);display:flex;gap:8px}
+.included li::before{content:"·";color:var(--teal-deep);font-weight:700}
+
+.steps{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:st;border-top:2px solid var(--ink)}
+.step{padding:26px 22px 0 0;min-width:0}
+.step + .step{padding-left:22px;border-left:1px solid var(--line)}
+.step .num{font-family:var(--display);font-size:2.4rem;font-weight:800;color:var(--amber);line-height:1}
+.step h3{font-size:1.08rem;margin-top:14px}
+.step p{color:var(--muted);font-size:.93rem;margin-top:6px}
+
+.faq-list{margin-top:40px;max-width:840px;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;font-family:var(--display);font-weight:600;font-size:1.06rem;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;font-family:var(--body);font-weight:500;transition:transform .2s ease,background .2s ease}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg);background:var(--amber)}
+details p{padding:0 44px 22px 0;color:var(--muted)}
+
+.close{background:var(--ink);color:var(--paper);padding-block:90px;position:relative;overflow:hidden}
+.close::before{content:"";position:absolute;width:520px;height:520px;right:-120px;top:-160px;border-radius:50%;background:radial-gradient(circle,rgba(231,163,62,.22),transparent 65%)}
+.close .wrap{position:relative;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.close h2{font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:20ch}
+.close h2 em{font-style:normal;color:var(--amber)}
+.close p{color:var(--muted-dark);margin-top:12px;max-width:52ch}
+
+footer{background:var(--ink);border-top:1px solid var(--line-dark);color:var(--muted-dark);padding-block:28px;font-size:.85rem}
+footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* responsivo */
+@media (max-width:980px){
+  .hero{padding-top:110px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .pains,.eco-grid,.plans{grid-template-columns:1fr}
+  .plan-alt{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:28px}
+  .step:nth-child(3){padding-left:0;border-left:0}
+}
+@media (max-width:720px){
+  .chain .wrap{grid-template-columns:1fr;gap:18px}
+  .link{padding-inline:0}
+  .link + .link{border-left:0;border-top:1.5px solid rgba(26,15,2,.18);padding-top:18px}
+  .top-tag{display:none}
+  .steps{grid-template-columns:1fr}
+  .step,.step + .step{padding:22px 0 0;border-left:0}
+  .step + .step{border-top:1px solid var(--line)}
+  .included ul{grid-template-columns:1fr}
+  .offer{flex-direction:column}
+  .offer-num{flex-direction:row;align-items:baseline;gap:12px}
+  section.s{padding-block:72px}
+  .form-card{padding:30px 22px 22px}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CYZK445MYC');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '876866025376843');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="lockup" aria-label="IVE e Mads">
+      <img class="ive" src="../logos-ive/logo-ive-limao.png" alt="IVE">
+      <span class="x" aria-hidden="true">×</span>
+      <img class="mads" src="https://madsagencia.com/wp-content/uploads/2025/08/mads-agencia-digital-negativa.webp" alt="Mads Agência Digital" onerror="this.outerHTML='&lt;span class=&quot;mads-fallback&quot;&gt;mads&lt;/span&gt;'">
+    </div>
+    <span class="top-tag">Condição exclusiva para clientes Mads</span>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="topo">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Parceria IVE × Mads</div>
+      <h1>Seus anúncios trazem o cliente. <em>A IA da IVE atende, vende e agenda</em> no seu WhatsApp.</h1>
+      <p class="hero-sub">A Mads coloca sua empresa na frente de quem quer comprar. A IVE garante que cada mensagem seja respondida em segundos, 24 horas por dia, e que nenhuma oportunidade se perca no caminho.</p>
+      <div class="offer">
+        <div class="offer-num"><b>50%</b><span>de desconto</span></div>
+        <div class="offer-txt">
+          <strong>na implantação da IA da IVE</strong>
+          <p>Válido para os planos Atendimento, Comercial e Agenda. Exclusivo para clientes da Mads.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card" id="formulario">
+      <form id="madsForm" novalidate>
+        <h2>Garanta sua condição</h2>
+        <p class="lead">Deixe seus dados. A IVE IA chama você no WhatsApp em segundos.</p>
+        <div class="field" id="f-nome">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
+          <span class="msg">Informe seu nome.</span>
+        </div>
+        <div class="field" id="f-whats">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+          <span class="msg">Informe um WhatsApp com DDD.</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br">
+          <span class="msg">Informe um e-mail válido.</span>
+        </div>
+        <button type="submit" class="btn btn-amber" id="btnEnviar">Quero minha condição Mads</button>
+        <p class="form-foot">Resposta em segundos. Sem compromisso.</p>
+        <div style="text-align:center"><span class="badge-mads">✓ 50% de desconto na implantação</span></div>
+      </form>
+      <div class="success" role="status" aria-live="polite">
+        <div class="ok">✓</div>
+        <h3>Recebemos seus dados!</h3>
+        <p>Estamos abrindo o WhatsApp para você falar com a IVE.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chain" aria-label="Como a parceria funciona">
+  <div class="wrap">
+    <div class="link"><div class="n">01</div><div><b>A Mads gera a demanda</b><span>Anúncios que trazem clientes até você.</span></div></div>
+    <div class="link"><div class="n">02</div><div><b>A IVE atende em segundos</b><span>IA no WhatsApp, 24h, com tudo no CRM.</span></div></div>
+    <div class="link"><div class="n">03</div><div><b>Você vende mais</b><span>Menos leads perdidos, mais clientes fechados.</span></div></div>
+  </div>
+</div>
+
+<section class="s" id="problema">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="kicker">O que acontece depois do clique</div>
+      <h2>Anúncio bom com atendimento lento é dinheiro deixado na mesa.</h2>
+      <p>A campanha faz o cliente chegar. O que acontece nos primeiros minutos da conversa decide se ele compra com você ou com o concorrente.</p>
+    </div>
+    <div class="pains">
+      <div class="pain"><span class="ico">Fora do horário</span><h3>O lead chega quando ninguém está olhando</h3><p>À noite, no fim de semana, no horário de almoço. Quando alguém responde, o cliente já resolveu em outro lugar.</p></div>
+      <div class="pain"><span class="ico">Demora</span><h3>Resposta lenta esfria o interesse</h3><p>Equipe ocupada, mensagens acumuladas e orçamento montado na mão. Cada minuto de espera custa venda.</p></div>
+      <div class="pain"><span class="ico">Sem visibilidade</span><h3>Ninguém sabe o que virou venda</h3><p>As conversas ficam espalhadas em vários celulares, sem histórico, sem follow-up e sem saber de qual anúncio cada cliente veio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="s eco" id="ecossistema">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="kicker">Um ecossistema, três ganhos</div>
+      <h2>Quando a Mads e a IVE trabalham juntas, todo mundo ganha.</h2>
+    </div>
+    <div class="eco-grid">
+      <div class="eco-card eco-mads">
+        <span class="who">Mads</span>
+        <h3>Atrai o cliente certo</h3>
+        <ul><li>Campanhas no Google, Meta e outras redes</li><li>Estratégia e otimização contínua</li><li>Mais pessoas certas chegando ao seu WhatsApp</li></ul>
+      </div>
+      <div class="eco-card eco-ive">
+        <span class="who">IVE</span>
+        <h3>Atende e conduz a venda</h3>
+        <ul><li>IA responde em segundos, 24 horas por dia</li><li>Qualifica, apresenta produtos, calcula orçamentos e agenda</li><li>Passa para a sua equipe na hora certa, com todo o histórico</li></ul>
+      </div>
+      <div class="eco-card eco-you">
+        <span class="who">Sua empresa</span>
+        <h3>Vende mais com o mesmo investimento</h3>
+        <ul><li>Mais leads convertidos em clientes</li><li>Equipe livre para fechar negócios</li><li>Atendimento organizado em um só lugar</li></ul>
+      </div>
+    </div>
+    <div class="eco-note">
+      <span class="tag">Resultado</span>
+      <p><b>Anúncio e atendimento falando a mesma língua.</b> Com os leads organizados no IVE CRM, você e a Mads acompanham quais campanhas geram conversas e vendas, e investem mais no que dá resultado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="planos">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="kicker">Escolha como a IA trabalha para você</div>
+      <h2>Três planos, todos com 50% de desconto na implantação.</h2>
+      <p>Nós implantamos, treinamos a IA com as informações da sua empresa e acompanhamos o início da operação.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <span class="off">50% off na implantação</span>
+        <div class="ic">💬</div>
+        <h3>IVE Atendimento</h3>
+        <p class="fn">Atende, tira dúvidas, qualifica e direciona para a pessoa certa.</p>
+        <ul><li>Responde dúvidas sobre produtos e serviços</li><li>Entende o contexto e lembra de cada cliente</li><li>Envia fotos, vídeos e PDFs</li><li>Transfere para o setor ou atendente certo</li></ul>
+        <a href="#formulario" class="btn btn-ink">Quero este plano</a>
+      </div>
+      <div class="plan">
+        <span class="off">50% off na implantação</span>
+        <div class="ic">🚀</div>
+        <h3>IVE Comercial</h3>
+        <p class="fn">Atende, apresenta produtos e conduz o cliente até a compra.</p>
+        <ul><li>Inclui tudo do IVE Atendimento</li><li>Recomenda o produto certo do seu catálogo</li><li>Consulta preços e calcula orçamentos</li><li>Envia link de pagamento e confirma a compra</li><li>Faz follow-up e avisa o vendedor na hora de fechar</li></ul>
+        <a href="#formulario" class="btn btn-ink">Quero este plano</a>
+      </div>
+      <div class="plan">
+        <span class="off">50% off na implantação</span>
+        <div class="ic">📅</div>
+        <h3>IVE Agenda</h3>
+        <p class="fn">Marca, confirma e lembra compromissos direto no Google Agenda.</p>
+        <ul><li>Inclui tudo do IVE Atendimento</li><li>Agenda consultas, visitas e reuniões 24h</li><li>Remarca e cancela quando o cliente pede</li><li>Confirma presença e envia lembretes</li></ul>
+        <a href="#formulario" class="btn btn-ink">Quero este plano</a>
+      </div>
+    </div>
+    <div class="plan-alt">
+      <div class="custom">
+        <span class="who">IVE Personalizado</span>
+        <h3>Projeto sob medida? Também tem condição especial.</h3>
+        <p>Integrações com ERP, outros CRMs, vários agentes e automações internas. Primeiro entendemos o projeto, depois apresentamos a condição para clientes Mads.</p>
+        <a href="#formulario">Conversar sobre meu projeto →</a>
+      </div>
+      <div class="included">
+        <h3>Incluso em todos os planos</h3>
+        <ul>
+          <li>Plataforma de atendimento IVE CRM</li><li>Vários atendentes em um só número</li>
+          <li>Departamentos e distribuição de conversas</li><li>Funis de vendas (CRM Kanban)</li>
+          <li>Chatbots ilimitados</li><li>Mensagens agendadas e campanhas</li>
+          <li>Painel com indicadores de atendimento</li><li>API aberta para integrações</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s eco" id="como-funciona">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="kicker">Como funciona</div>
+      <h2>Do formulário à IA rodando no seu WhatsApp.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Você preenche o formulário</h3><p>Só nome, WhatsApp e e-mail.</p></div>
+      <div class="step"><div class="num">2</div><h3>A IVE IA chama você</h3><p>Em segundos, pelo WhatsApp, para entender sua operação. Você já vê a IA funcionando na prática.</p></div>
+      <div class="step"><div class="num">3</div><h3>Diagnóstico com especialista</h3><p>Definimos o plano ideal e aplicamos os 50% de desconto na implantação.</p></div>
+      <div class="step"><div class="num">4</div><h3>Implantação e treinamento</h3><p>Configuramos o IVE CRM, treinamos a IA com as regras da sua empresa e acompanhamos o início.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="duvidas">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="kicker">Dúvidas</div>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list">
+      <details><summary>Quem pode usar a condição de 50%?</summary><p>Empresas que são clientes da Mads Agência Digital. Ao preencher o formulário desta página, sua condição já fica registrada.</p></details>
+      <details><summary>O desconto vale para quais planos?</summary><p>Para a implantação dos planos IVE Atendimento, IVE Comercial e IVE Agenda. Para o IVE Personalizado também existe condição especial, apresentada depois que entendemos o projeto.</p></details>
+      <details><summary>A Mads continua cuidando dos meus anúncios?</summary><p>Sim. A Mads segue com as suas campanhas, e a IVE cuida do atendimento dos clientes que elas trazem. As duas trabalham juntas para você vender mais.</p></details>
+      <details><summary>A IA substitui minha equipe?</summary><p>Não necessariamente. A IA faz o primeiro atendimento, responde o que é repetitivo, qualifica e conduz a conversa. Quando é hora de uma pessoa assumir, ela transfere com todo o histórico.</p></details>
+      <details><summary>Posso usar o número de WhatsApp que já tenho?</summary><p>Sim, desde que seja um número de WhatsApp Business. Seus clientes continuam falando com o mesmo número que já conhecem.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <div>
+      <h2>Seus anúncios já trazem clientes. <em>Agora é hora de atender todos eles.</em></h2>
+      <p>Condição exclusiva para clientes Mads: 50% de desconto na implantação da IA da IVE.</p>
+    </div>
+    <a href="#formulario" class="btn btn-amber">Quero minha condição Mads</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 IVE · Inteligência em Vendas</span>
+    <span>Parceria com Mads Agência Digital</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WEBHOOK_URL='https://ive-n8n.tnl6ji.easypanel.host/webhook/recebe-leads-site';
+  var WHATS_IVE='553193628477';
+
+  // Origem do lead (campanha, palavra-chave, anúncio, clique e página)
+  function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+  function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  try{
+    var q=new URLSearchParams(location.search),keys=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'],found={},has=false;
+    keys.forEach(function(k){var v=q.get(k);if(v){found[k]=v;has=true;}});
+    if(has){found.landing_url=location.href.split('#')[0];found.data_clique=new Date().toISOString();lsSet('ive_origem',JSON.stringify(found));}
+  }catch(e){}
+  function origemLead(){var o={};try{o=JSON.parse(lsGet('ive_origem')||'{}')||{};}catch(e){o={};}o.pagina_origem='mads';o.parceiro='mads';o.referrer=document.referrer||'';return o;}
+
+  // Máscara de telefone
+  var tel=document.getElementById('whatsapp');
+  tel.addEventListener('input',function(e){var v=e.target.value.replace(/\D/g,'').substring(0,11);if(v.length>6)e.target.value='('+v.substring(0,2)+') '+v.substring(2,7)+'-'+v.substring(7);else if(v.length>2)e.target.value='('+v.substring(0,2)+') '+v.substring(2);else if(v.length>0)e.target.value='('+v;});
+
+  function setErr(id,on){document.getElementById(id).classList.toggle('err',!!on);}
+  function valida(){
+    var nome=document.getElementById('nome').value.trim(),
+        w=tel.value.replace(/\D/g,''),
+        em=document.getElementById('email').value.trim(),ok=true;
+    if(nome.length<2){setErr('f-nome',1);ok=false;}else setErr('f-nome',0);
+    if(w.length<10){setErr('f-whats',1);ok=false;}else setErr('f-whats',0);
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){setErr('f-email',1);ok=false;}else setErr('f-email',0);
+    return ok;
+  }
+  ['nome','whatsapp','email'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){this.parentNode.classList.remove('err');});});
+
+  var enviado=false;
+  document.getElementById('madsForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(enviado||!valida()){var f=document.querySelector('.field.err input');if(f)f.focus();return;}
+    enviado=true;
+    var p={
+      nome:document.getElementById('nome').value.trim(),
+      whatsapp:tel.value.trim(),
+      email:document.getElementById('email').value.trim(),
+      segmento:'',usa_crm:'',plataforma:'',quantas_pessoas:'',automatizar:'',
+      observacao:'Cliente Mads: 50% de desconto na implantação',
+      steps_concluidos:['step1'],status:'step1'
+    };
+    try{p.timestamp=new Date().toISOString();}catch(x){p.timestamp='';}
+    var o=origemLead();for(var k in o){if(o.hasOwnProperty(k))p[k]=o[k];}
+    try{fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true}).catch(function(){});}catch(x){}
+    try{if(window.gtag)gtag('event','generate_lead',{form:'mads'});}catch(x){}
+    try{if(window.fbq)fbq('track','Lead',{content_name:'mads'});}catch(x){}
+    document.querySelector('.form-card').classList.add('done');
+    var url='https://wa.me/'+WHATS_IVE+'?text='+encodeURIComponent('Olá! Sou '+p.nome+', cliente da Mads, e quero a condição de 50% na implantação da IVE. WhatsApp: '+p.whatsapp+'. E-mail: '+p.email+'.');
+    setTimeout(function(){window.location.href=url;},1200);
+  });
+})();
+</script>
+<script
+  type="application/javascript"
+  src="https://cdn.wts.chat/scripts/widget/v2/h-widget-min.js"
+  data-companyid="067dd376-7c33-4487-be4e-f80371048c9b"
+  data-widgetid="b91cc0d9-b94a-4fcc-aa2a-6a43f710d207">
+</script>
+</body>
+</html>
