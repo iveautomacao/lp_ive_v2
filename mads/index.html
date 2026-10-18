@@ -206,14 +206,12 @@ footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 /* faixa Black November */
 .bn{background:#050605;color:#fff;border-bottom:2px solid var(--amber);position:relative;overflow:hidden}
 .bn::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(231,163,62,.10) 0 2px,transparent 2px 18px);pointer-events:none}
-.bn .wrap{position:relative;display:flex;align-items:center;justify-content:center;gap:14px 26px;flex-wrap:wrap;padding-block:14px;text-align:center}
-.bn-title{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:.02em;text-transform:uppercase}
+.bn .wrap{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:nowrap;padding-block:9px;text-align:center;white-space:nowrap}
+.bn-title{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase}
 .bn-title span{color:var(--amber)}
-.bn-off{background:var(--amber);color:#1A0F02;font-family:var(--display);font-weight:800;font-size:1.05rem;padding:6px 14px;border-radius:8px;letter-spacing:-.01em}
-.bn-txt{font-size:.92rem;color:#D8DDD7}
-.bn-cta{color:var(--amber);font-weight:700;text-decoration:none;font-size:.92rem;border-bottom:1.5px solid currentColor;padding-bottom:1px}
-.bn-cta:hover{color:#fff}
-@media (max-width:720px){.bn .wrap{gap:8px 14px;padding-block:12px}.bn-title{font-size:1.05rem}.bn-off{font-size:.92rem}.bn-txt{flex-basis:100%;font-size:.85rem}}
+.bn-title small{font-size:1em;font-weight:800;color:#fff;margin-left:6px}
+.bn-off{background:var(--amber);color:#1A0F02;font-family:var(--display);font-weight:800;font-size:.95rem;padding:4px 12px;border-radius:7px;letter-spacing:-.01em}
+@media (max-width:720px){.bn .wrap{gap:10px;padding-block:8px;padding-inline:12px}.bn-title{font-size:.84rem;letter-spacing:.01em}.bn-title small{margin-left:3px}.bn-off{font-size:.8rem;padding:3px 9px}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYZK445MYC"></script>
@@ -245,10 +243,8 @@ src="https://www.facebook.com/tr?id=876866025376843&ev=PageView&noscript=1"
 
 <div class="bn" role="region" aria-label="Black November">
   <div class="wrap">
-    <span class="bn-title">Black <span>November</span></span>
+    <span class="bn-title">Black <span>November</span> <small>Mads × IVE</small></span>
     <span class="bn-off">50% OFF</span>
-    <span class="bn-txt">na implantação para clientes Mads · até 30 de novembro</span>
-    <a class="bn-cta" href="#formulario">Garantir minha condição</a>
   </div>
 </div>
 <header class="top">
