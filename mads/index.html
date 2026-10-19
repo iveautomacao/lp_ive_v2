@@ -518,6 +518,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     };
     try{p.timestamp=new Date().toISOString();}catch(x){p.timestamp='';}
     var o=origemLead();for(var k in o){if(o.hasOwnProperty(k))p[k]=o[k];}
+    try{p.url_site=window.location.href.split('#')[0];}catch(x){p.url_site='';}
     try{fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true}).catch(function(){});}catch(x){}
     try{if(window.gtag)gtag('event','generate_lead',{form:'mads'});}catch(x){}
     try{if(window.fbq)fbq('track','Lead',{content_name:'mads'});}catch(x){}

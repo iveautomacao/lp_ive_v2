@@ -960,6 +960,7 @@ function montaPayload(status){
   p.quantas_pessoas=d.quantas_pessoas;p.automatizar=d.automatizar;p.observacao=d.observacao;
   p.steps_concluidos=stepsConcluidos.slice();
   p.pagina_origem='home';
+  try{p.url_site=window.location.href.split('#')[0];}catch(e){p.url_site='';}
   p.status=status;
   try{p.timestamp=new Date().toISOString();}catch(e){p.timestamp='';}
   return p;
