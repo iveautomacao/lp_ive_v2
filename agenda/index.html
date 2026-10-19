@@ -1014,7 +1014,7 @@ function handleFormSubmit(e){e.preventDefault();if(!validateStep(cur))return;sal
   var b=document.getElementById('btnSubmit');b.classList.add('loading');b.disabled=true;
   var lead=montaPayload('step3');
   var redirectURL='https://wa.me/553193628477?text='+encodeURIComponent('Olá! Sou '+lead.nome+' e acabei de preencher o formulário no site da IVE. WhatsApp: '+lead.whatsapp+'. E-mail: '+lead.email+'.');
-  function finish(){if(_formDone)return;_formDone=true;b.classList.remove('loading');b.disabled=false;document.querySelectorAll('.form-step').forEach(function(s){s.classList.remove('active');});document.getElementById('formNav').style.display='none';document.querySelector('.form-progress').style.display='none';document.getElementById('formSuccess').classList.add('visible');try{window.open(redirectURL,'_blank');}catch(ex){}window.location.href=redirectURL;}
+  function finish(){if(_formDone)return;_formDone=true;b.classList.remove('loading');b.disabled=false;document.querySelectorAll('.form-step').forEach(function(s){s.classList.remove('active');});document.getElementById('formNav').style.display='none';document.querySelector('.form-progress').style.display='none';document.getElementById('formSuccess').classList.add('visible');var w=null;try{w=window.open(redirectURL,'_blank');}catch(ex){}if(!w){window.location.href=redirectURL;}}
   enviaWebhook(lead,false);
   try{finish();}catch(ex){}
 }

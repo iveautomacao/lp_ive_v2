@@ -516,7 +516,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     try{if(window.fbq)fbq('track','Lead',{content_name:'mads'});}catch(x){}
     document.querySelector('.form-card').classList.add('done');
     var url='https://wa.me/'+WHATS_IVE+'?text='+encodeURIComponent('Olá! Sou '+p.nome+', cliente da Mads, e quero a condição de 50% na implantação da IVE. WhatsApp: '+p.whatsapp+'. E-mail: '+p.email+'.');
-    setTimeout(function(){window.location.href=url;},1200);
+    var w=null;try{w=window.open(url,'_blank');}catch(x){}
+    if(!w){setTimeout(function(){window.location.href=url;},1200);}
   });
 })();
 </script>
