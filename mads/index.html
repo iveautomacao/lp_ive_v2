@@ -210,6 +210,17 @@ footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
   .form-card{padding:30px 22px 22px}
 }
 
+/* seção escura (problema) */
+.dark{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.dark::before{content:"";position:absolute;inset:0;background:radial-gradient(560px 380px at 92% 8%,rgba(47,187,174,.12),transparent 70%);pointer-events:none}
+.dark .wrap{position:relative}
+.dark .s-head .kicker{color:var(--amber)}
+.dark .s-head p{color:var(--muted-dark)}
+.dark .pain{background:var(--ink-2);border-color:var(--line-dark)}
+.dark .pain h3{color:var(--paper)}
+.dark .pain p{color:var(--muted-dark)}
+.dark .pain .ico{color:var(--amber);background:rgba(231,163,62,.14)}
+
 /* depoimento em vídeo */
 .depo{background:var(--paper-2)}
 .depo-grid{display:grid;grid-template-columns:1fr 360px;grid-template-areas:"head video" "foot video";column-gap:72px;align-items:center;max-width:1000px;margin:0 auto}
@@ -364,7 +375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="s" id="problema">
+<section class="s dark" id="problema">
   <div class="wrap">
     <div class="s-head">
       <div class="kicker">O que acontece depois do clique</div>
