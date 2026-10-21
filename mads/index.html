@@ -210,6 +210,30 @@ footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
   .form-card{padding:30px 22px 22px}
 }
 
+/* depoimento em vídeo */
+.depo{background:var(--paper-2)}
+.depo-grid{display:grid;grid-template-columns:1fr 360px;grid-template-areas:"head video" "foot video";column-gap:72px;align-items:center;max-width:1000px;margin:0 auto}
+.depo-head{grid-area:head;align-self:end}
+.depo-foot{grid-area:foot;align-self:start;margin-top:28px}
+.depo-video{grid-area:video;min-width:0}
+.depo-sign{display:flex;align-items:center;gap:14px;padding-left:16px;border-left:3px solid var(--teal)}
+.depo-sign b{font-family:var(--display);font-size:1.08rem;display:block;line-height:1.25}
+.depo-sign span{color:var(--muted);font-size:.92rem}
+.depo-foot .btn{margin-top:28px}
+.vplayer{position:relative;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:var(--ink);box-shadow:0 40px 80px -40px rgba(17,29,21,.7);border:6px solid #fff}
+.vplayer video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.vplay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding-bottom:30px;border:0;cursor:pointer;background:linear-gradient(180deg,transparent 45%,rgba(17,29,21,.72));color:#fff;font:600 .92rem var(--body)}
+.vplay i{width:76px;height:76px;border-radius:50%;background:var(--amber);display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(0,0,0,.6);transition:transform .2s ease;position:absolute;top:66%;left:50%;transform:translate(-50%,-50%)}
+.vplay i::before{content:"";margin-left:6px;border-style:solid;border-width:14px 0 14px 22px;border-color:transparent transparent transparent #1A0F02}
+.vplay:hover i{transform:translate(-50%,-50%) scale(1.06)}
+.vplay:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
+.vplayer.playing .vplay{display:none}
+@media (max-width:980px){
+  .depo-grid{grid-template-columns:1fr;grid-template-areas:"head" "video" "foot";row-gap:32px}
+  .depo-foot{margin-top:0}
+  .depo-video{max-width:340px;width:100%;margin:0 auto}
+}
+
 /* faixa Black November */
 .bn{background:#050605;color:#fff;border-bottom:2px solid #FFD60A;position:relative;overflow:hidden}
 .bn::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,214,10,.10) 0 2px,transparent 2px 18px);pointer-events:none}
@@ -316,6 +340,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="link"><div class="n">03</div><div><b>Você vende mais</b><span>Menos leads perdidos, mais clientes fechados.</span></div></div>
   </div>
 </div>
+
+<section class="s depo" id="depoimento">
+  <div class="wrap">
+    <div class="depo-grid">
+      <div class="s-head depo-head">
+        <span class="kicker">Recado do Matheus, CEO da Mads</span>
+        <h2>Por que a Mads indica a IVE para os próprios clientes</h2>
+      </div>
+      <div class="depo-video">
+        <div class="vplayer" id="vplayer">
+          <video id="depoVideo" preload="none" playsinline poster="depoimento-mads-capa.jpg" aria-label="Depoimento de Matheus Aleixo, CEO da Mads Agência Digital">
+            <source src="depoimento-mads.mp4" type="video/mp4">
+          </video>
+          <button type="button" class="vplay" id="vplay" aria-label="Assistir ao depoimento do Matheus"><i aria-hidden="true"></i><span>Assista · 1 min</span></button>
+        </div>
+      </div>
+      <div class="depo-foot">
+        <div class="depo-sign"><div><b>Matheus Aleixo</b><span>CEO da Mads Agência Digital</span></div></div>
+        <a href="#formulario" class="btn btn-amber">Quero minha condição Mads</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="s" id="problema">
   <div class="wrap">
@@ -518,6 +565,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var url='https://wa.me/'+WHATS_IVE+'?text='+encodeURIComponent('Olá! Sou '+p.nome+', cliente da Mads, e quero a condição de 50% na implantação da IVE. WhatsApp: '+p.whatsapp+'. E-mail: '+p.email+'.');
     var w=null;try{w=window.open(url,'_blank');}catch(x){}
     if(!w){setTimeout(function(){window.location.href=url;},1200);}
+  });
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById('vplayer'),v=document.getElementById('depoVideo'),b=document.getElementById('vplay');
+  if(!box||!v||!b)return;
+  b.addEventListener('click',function(){
+    box.classList.add('playing');v.controls=true;
+    try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}
+    try{(window.dataLayer=window.dataLayer||[]).push({event:'video_mads_play'});}catch(e){}
   });
 })();
 </script>
