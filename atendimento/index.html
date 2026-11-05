@@ -1183,7 +1183,8 @@ window.scrollTo(0,0);
   var mq=window.matchMedia('(max-width: 767px)'),comecou=false;
   function escolhe(){
     if(comecou)return;
-    var vert=mq.matches,fmt=vert?'vertical':'horizontal';
+    var w=window.innerWidth||document.documentElement.clientWidth||(window.screen&&screen.width)||0;
+    var vert=w>0&&w<=767,fmt=vert?'vertical':'horizontal';
     box.classList.toggle('is-vertical',vert);
     v.poster='video/capa-'+fmt+'.jpg';
     v.setAttribute('data-src','video/ive-atendimento-'+fmt+'.mp4');
@@ -1191,7 +1192,7 @@ window.scrollTo(0,0);
   escolhe();
   if(mq.addEventListener)mq.addEventListener('change',escolhe);else if(mq.addListener)mq.addListener(escolhe);
   b.addEventListener('click',function(){
-    comecou=true;
+    escolhe();comecou=true;
     if(!v.getAttribute('src'))v.src=v.getAttribute('data-src');
     box.classList.add('playing');v.controls=true;
     try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}
