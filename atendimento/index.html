@@ -535,23 +535,25 @@ header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3
 .trust-strip .soc-badge:hover{background:var(--ink);border-color:var(--ink);}
 .trust-hl{display:inline;padding:.06em .18em;border-radius:4px;background:linear-gradient(180deg,transparent 8%,rgba(255,255,255,.9) 8%,rgba(255,255,255,.95) 100%);line-height:1.6;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
 .hero-bg .orb-amber{opacity:.18;}
-/* Vídeo de apresentação: celular carrega só o vertical, computador só o horizontal (escolhido no script do fim da página) */
-.vsec{background:var(--ink);color:var(--paper);padding:88px 0 24px;position:relative;}
-.vsec .section-head{text-align:center;max-width:760px;margin:0 auto 36px;}
-.vsec .eyebrow{justify-content:center;color:var(--amber);}
-.vsec h2{color:var(--paper);}
-.vsec-player{position:relative;margin:0 auto;aspect-ratio:16/9;max-width:960px;border-radius:24px;overflow:hidden;background:#000;border:2px solid rgba(231,163,62,.55);box-shadow:0 40px 90px -40px rgba(0,0,0,.85);}
+/* Vídeo de apresentação no topo, no lugar da imagem do painel: celular carrega só o vertical, computador só o horizontal (escolhido no script do fim da página) */
+.vsec-player{position:relative;margin:0 auto;aspect-ratio:16/9;width:100%;border-radius:24px;overflow:hidden;background:#000;border:2px solid rgba(231,163,62,.55);box-shadow:0 40px 90px -40px rgba(0,0,0,.85);}
 .vsec-player.is-vertical{aspect-ratio:9/16;max-width:min(380px,100%);}
 .vsec-player video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#000;}
 .vsec-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding-bottom:28px;border:0;cursor:pointer;background:linear-gradient(180deg,transparent 50%,rgba(17,29,21,.75));color:#fff;font:600 .95rem var(--font-body);}
 .vsec-play i{width:84px;height:84px;border-radius:50%;background:var(--amber);display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(0,0,0,.6);transition:transform .2s ease;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
-.vsec-play i{top:74%;}
+/* computador: botão no canto de baixo, com o texto ao lado (não cobre o rosto) */
+.vsec-player:not(.is-vertical) .vsec-play{flex-direction:row;align-items:flex-end;justify-content:flex-start;gap:14px;padding:0 0 18px 20px;}
+.vsec-player:not(.is-vertical) .vsec-play i{position:static;transform:none;width:64px;height:64px;}
+.vsec-player:not(.is-vertical) .vsec-play i::before{border-width:12px 0 12px 19px;margin-left:5px;}
+.vsec-player:not(.is-vertical) .vsec-play span{margin-bottom:20px;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+.vsec-player:not(.is-vertical) .vsec-play:hover i{transform:scale(1.06);}
 .vsec-player.is-vertical .vsec-play i{top:70%;}
+.hero-grid:has(.vsec-player){grid-template-columns:1fr 1fr;}
+@media(max-width:960px){.hero-grid:has(.vsec-player){grid-template-columns:1fr;}}
 .vsec-play i::before{content:"";margin-left:6px;border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent #1A0F02;}
 .vsec-play:hover i{transform:translate(-50%,-50%) scale(1.06);}
 .vsec-play:focus-visible{outline:3px solid var(--teal);outline-offset:-3px;}
 .vsec-player.playing .vsec-play{display:none;}
-@media(max-width:720px){.vsec{padding:64px 0 16px;}}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -631,23 +633,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
         <div class="hero-ctas">
           <a href="#qualificacao" class="btn btn-primary btn-pulse btn-shine">Quero um agente de IA</a>
-          <a href="#video" class="btn btn-ghost">Ver como funciona ↓</a>
+          <a href="#produto" class="btn btn-ghost">Ver como funciona ↓</a>
         </div>
 
       </div>
-      <div class="hero-visual">
-        <div class="product-frame">
-          <div class="frame-bar"><span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span><small>app.ivecrm.com/painel</small></div>
-          <div class="frame-body">
-            <div class="carousel" id="carousel">
-              <div class="carousel-track">
-                <img class="carousel-slide active" src="../capa-site/capa-1.png" alt="Visão do IVE CRM: funil comercial, atendimento e IA em operação">
-              </div>
-              <div class="carousel-dots" id="carouselDots"></div>
-            </div>
-          </div>
+      <div class="hero-visual" id="video">
+        <div class="vsec-player" id="ivPlayer">
+          <video id="ivVideo" preload="none" playsinline aria-label="Vídeo: como a IVE coloca a IA para atender o WhatsApp da sua empresa"></video>
+          <button type="button" class="vsec-play" id="ivPlay" aria-label="Assistir ao vídeo de apresentação da IVE"><i aria-hidden="true"></i><span>Assista · 2 min</span></button>
         </div>
-        <div class="hero-badge">Lead chega → IA responde → CRM registra, ao vivo</div>
       </div>
     </div>
     <div class="trust-strip">
@@ -662,20 +656,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="soc-badge" data-color="#0084FF" title="Facebook Messenger"><svg class="soc-logo" viewBox="0 0 24 24" aria-label="Facebook Messenger"><path d="M12 0C5.24 0 0 4.952 0 11.64c0 3.499 1.434 6.522 3.769 8.61a.96.96 0 01.323.684l.065 2.135a.96.96 0 001.348.849l2.381-1.05a.958.958 0 01.641-.047c1.09.3 2.256.459 3.473.459 6.76 0 12-4.952 12-11.64S18.76 0 12 0zm7.48 8.88l-3.786 6.024a1.92 1.92 0 01-2.763.541l-2.977-2.228a.48.48 0 00-.579 0L6.8 15.728a.96.96 0 01-1.386-1.248l3.786-6.024a1.92 1.92 0 012.763-.541l2.977 2.228a.48.48 0 00.579 0l2.87-2.149a.96.96 0 011.09 0 .96.96 0 011.386 1.248-.96.96 0 01-.39.318z"/></svg></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- VÍDEO -->
-<section class="vsec" id="video">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Veja em 2 minutos</div>
-      <h2>Como a IVE coloca a IA para atender o seu WhatsApp</h2>
-    </div>
-    <div class="vsec-player" id="ivPlayer">
-      <video id="ivVideo" preload="none" playsinline aria-label="Vídeo: como a IVE coloca a IA para atender o WhatsApp da sua empresa"></video>
-      <button type="button" class="vsec-play" id="ivPlay" aria-label="Assistir ao vídeo de apresentação da IVE"><i aria-hidden="true"></i><span>Assista · 2 min</span></button>
     </div>
   </div>
 </section>
