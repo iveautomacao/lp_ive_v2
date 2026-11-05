@@ -537,6 +537,25 @@ header.scrolled{background:#111D15!important;box-shadow:0 4px 30px rgba(0,0,0,.3
 .trust-strip .soc-badge:hover{background:var(--ink);border-color:var(--ink);}
 .trust-hl{display:inline;padding:.06em .18em;border-radius:4px;background:linear-gradient(180deg,transparent 8%,rgba(255,255,255,.9) 8%,rgba(255,255,255,.95) 100%);line-height:1.6;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
 .hero-bg .orb-amber{opacity:.18;}
+/* Vídeo de apresentação no topo, no lugar da imagem do painel: celular carrega só o vertical, computador só o horizontal (escolhido no script do fim da página) */
+.vsec-player{position:relative;margin:0 auto;aspect-ratio:16/9;width:100%;border-radius:24px;overflow:hidden;background:#000;border:2px solid rgba(231,163,62,.55);box-shadow:0 40px 90px -40px rgba(0,0,0,.85);}
+.vsec-player.is-vertical{aspect-ratio:9/16;max-width:min(380px,100%);}
+.vsec-player video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#000;}
+.vsec-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding-bottom:28px;border:0;cursor:pointer;background:linear-gradient(180deg,transparent 50%,rgba(17,29,21,.75));color:#fff;font:600 .95rem var(--font-body);}
+.vsec-play i{width:84px;height:84px;border-radius:50%;background:var(--amber);display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(0,0,0,.6);transition:transform .2s ease;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+/* computador: botão no canto de baixo, com o texto ao lado (não cobre o rosto) */
+.vsec-player:not(.is-vertical) .vsec-play{flex-direction:row;align-items:flex-end;justify-content:flex-start;gap:14px;padding:0 0 18px 20px;}
+.vsec-player:not(.is-vertical) .vsec-play i{position:static;transform:none;width:64px;height:64px;}
+.vsec-player:not(.is-vertical) .vsec-play i::before{border-width:12px 0 12px 19px;margin-left:5px;}
+.vsec-player:not(.is-vertical) .vsec-play span{margin-bottom:20px;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+.vsec-player:not(.is-vertical) .vsec-play:hover i{transform:scale(1.06);}
+.vsec-player.is-vertical .vsec-play i{top:70%;}
+.hero-grid:has(.vsec-player){grid-template-columns:1fr 1fr;}
+@media(max-width:960px){.hero-grid:has(.vsec-player){grid-template-columns:1fr;}}
+.vsec-play i::before{content:"";margin-left:6px;border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent #1A0F02;}
+.vsec-play:hover i{transform:translate(-50%,-50%) scale(1.06);}
+.vsec-play:focus-visible{outline:3px solid var(--teal);outline-offset:-3px;}
+.vsec-player.playing .vsec-play{display:none;}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -620,19 +639,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
       </div>
-      <div class="hero-visual">
-        <div class="product-frame">
-          <div class="frame-bar"><span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span><small>app.ivecrm.com/painel</small></div>
-          <div class="frame-body">
-            <div class="carousel" id="carousel">
-              <div class="carousel-track">
-                <img class="carousel-slide active" src="../capa-site/capa-1.png" alt="Visão do IVE CRM: funil comercial, atendimento e IA em operação">
-              </div>
-              <div class="carousel-dots" id="carouselDots"></div>
-            </div>
-          </div>
+      <div class="hero-visual" id="video">
+        <div class="vsec-player" id="ivPlayer">
+          <video id="ivVideo" preload="none" playsinline aria-label="Vídeo de apresentação da IVE"></video>
+          <button type="button" class="vsec-play" id="ivPlay" aria-label="Assistir ao vídeo de apresentação da IVE"><i aria-hidden="true"></i><span>Assista · 2 min</span></button>
         </div>
-        <div class="hero-badge">Cliente pergunta → IA apresenta e orça → vendedor fecha</div>
       </div>
     </div>
     <div class="trust-strip">
@@ -1145,6 +1156,31 @@ window.scrollTo(0,0);
     if(e.key==='Escape')closeLightbox();
     else if(e.key==='ArrowRight')lbNext();
     else if(e.key==='ArrowLeft')lbPrev();
+  });
+})();
+</script>
+<script>
+/* Vídeo: escolhe o formato pela largura da tela e só baixa quando a pessoa aperta o play */
+(function(){
+  var box=document.getElementById('ivPlayer'),v=document.getElementById('ivVideo'),b=document.getElementById('ivPlay');
+  if(!box||!v||!b)return;
+  var mq=window.matchMedia('(max-width: 767px)'),comecou=false;
+  function escolhe(){
+    if(comecou)return;
+    var w=window.innerWidth||document.documentElement.clientWidth||(window.screen&&screen.width)||0;
+    var vert=w>0&&w<=767,fmt=vert?'vertical':'horizontal';
+    box.classList.toggle('is-vertical',vert);
+    v.poster='../atendimento/video/capa-'+fmt+'.jpg';
+    v.setAttribute('data-src','../atendimento/video/ive-atendimento-'+fmt+'.mp4');
+  }
+  escolhe();
+  if(mq.addEventListener)mq.addEventListener('change',escolhe);else if(mq.addListener)mq.addListener(escolhe);
+  b.addEventListener('click',function(){
+    escolhe();comecou=true;
+    if(!v.getAttribute('src'))v.src=v.getAttribute('data-src');
+    box.classList.add('playing');v.controls=true;
+    try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}
+    try{(window.dataLayer=window.dataLayer||[]).push({event:'video_vendas_play',video_formato:box.classList.contains('is-vertical')?'vertical':'horizontal'});}catch(e){}
   });
 })();
 </script>
